@@ -224,7 +224,7 @@
 - 管理员发布公告
   - 管理员可以根据情况发布不同的公告在首页展示
 
-![图片名称](https://activesoul8231.github.io/%E9%AB%98%E6%A0%A1%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%86%E7%B3%BB%E7%BB%9F2.jpg?raw=true)
+![图片名称](ActiveSoul8231.github.io/tests2.jpg?raw=true)
 
 
 
