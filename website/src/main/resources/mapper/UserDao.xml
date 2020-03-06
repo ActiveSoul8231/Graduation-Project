@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenlan.website.dao.UserDao">
+
+    <resultMap type="com.wenlan.website.bean.User" id="UserMap">
+        <result property="uId" column="u_id" jdbcType="INTEGER"/>
+        <result property="uName" column="u_name" jdbcType="VARCHAR"/>
+        <result property="uTelephone" column="u_telephone" jdbcType="VARCHAR"/>
+        <result property="uEmail" column="u_email" jdbcType="VARCHAR"/>
+        <result property="uPassword" column="u_password" jdbcType="VARCHAR"/>
+        <result property="uLevel" column="u_level" jdbcType="CHAR"/>
+        <result property="uRecoveryStatus" column="u_recovery_status" jdbcType="CHAR"/>
+    </resultMap>
+
+
+    <select id="getUserByUser" resultMap="UserMap" parameterType="com.wenlan.website.bean.User">
+        select * from tb_user where u_name = #{user.uName}
+    </select>
+
+    <select id="getUserByName" resultMap="UserMap">
+        SELECT * FROM tb_user where u_name= #{uName}
+    </select>
+
+    <select id="getUserByEmail" resultMap="UserMap">
+        SELECT * FROM tb_user where u_email = #{userMailFlag}
+    </select>
+
+    <select id="getUserTel" resultMap="UserMap">
+        select * from tb_user where u_telephone = #{uTelephone}
+    </select>
+
+    <insert id="registerUser" parameterType="com.wenlan.website.bean.User">
+        INSERT INTO tb_user(u_name,u_telephone,u_email,u_password) VALUES(#{user.uName},#{user.uTelephone},#{user.uEmail},#{user.uPassword})
+    </insert>
+
+    <select id="getUserById" resultMap="UserMap">
+        select * from tb_user where u_id = #{uId}
+    </select>
+
+    <select id="getAllUser" resultMap="UserMap">
+        SELECT t1.u_id,t1.u_name,t1.u_telephone,t1.u_email,(select count(m_id) from tb_find_or_discover WHERE m_u_id=t1.u_id) as u_password,u_level,u_recovery_status FROM tb_user t1 where u_level in (1,2)
+    </select>
+
+    <select id="getAllUser2" resultMap="UserMap">
+        SELECT u_id,u_name,u_telephone,u_email,u_password,u_level,u_recovery_status FROM tb_user where u_level in (2)
+    </select>
+
+    <update id="updateLevel" parameterType="com.wenlan.website.bean.User">
+        update tb_user set u_level = #{us.uLevel} where u_id = #{us.uId}
+    </update>
+
+    <update id="updateRecoveryStatus" parameterType="com.wenlan.website.bean.User">
+        update tb_user set u_recovery_status = #{us.uRecoveryStatus} where u_id = #{us.uId}
+    </update>
+
+    <delete id="deleteUser">
+        delete from tb_user where u_id=#{uId}
+    </delete>
+
+    <update id="updateName" parameterType="com.wenlan.website.bean.User">
+        update tb_user set
+        <if test="ss.uName != null and ss.uName != ''">
+            u_name = #{ss.uName}
+        </if>
+        where u_id = #{ss.uId}
+    </update>
+
+    <update id="updateEmail" parameterType="com.wenlan.website.bean.User">
+        update tb_user set
+        <if test="ss.uEmail != null and ss.uEmail != ''">
+            u_email = #{ss.uEmail}
+        </if>
+        where u_id = #{ss.uId}
+    </update>
+
+    <update id="updatePassword" parameterType="com.wenlan.website.bean.User">
+        update tb_user set
+        <if test="userss.uPassword != null and userss.uPassword != ''">
+            u_password = #{userss.uPassword}
+        </if>
+        where u_id = #{userss.uId}
+    </update>
+</mapper>
