@@ -61,15 +61,12 @@ var vue = new Vue({
                     btn: ['确定','取消'] //按钮
                 }, function(){
                     layer.msg('确定', {icon: 1});
-
                     var pMId = mId;
                     var url = "/toPost?mId="+pMId;
                     axios.post(url).then(function () {
-
                         console.log("信息状态修改完成")
                         vue.findListPersonal(start);
                     })
-
                 }, function(){
                 });
             }else if (status ==2) {
@@ -81,11 +78,9 @@ var vue = new Vue({
                     var pMId = mId;
                     var url = "/toPost?mId="+pMId;
                     axios.post(url).then(function () {
-
                         console.log("信息状态修改完成")
                         vue.findListPersonal(start);
                     })
-
                 }, function(){
                 });
             }else {
@@ -93,17 +88,13 @@ var vue = new Vue({
                     btn: ['确定','取消'] //按钮
                 }, function(){
                     layer.msg('确定', {icon: 1});
-
                     var pMId = mId;
                     var url = "/todel?mId="+pMId;
                     axios.post(url).then(function () {
-
                         console.log("信息删除完成")
                         vue.findListPersonal(start);
                         layer.msg("删除成功")
-
                     })
-
                 }, function(){
                 });
             }
