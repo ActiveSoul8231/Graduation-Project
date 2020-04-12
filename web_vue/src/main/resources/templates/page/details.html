@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" href="https://activesoul8231.github.io/favicon%20(1).ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/details.css">
+    <script src="/js/heroJs/jquery.min.js"></script>
+    <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <title>失物招领-信息详情</title>
+</head>
+<body>
+<div class="container-fluid" style="padding:0px;">
+    <!--head-->
+    <div class="container-fluid first">
+        <div class="container ssss">
+            <div class="row top">
+                <div class="col-md-3 login" th:if="${sessionTest.islogin == 0}">
+                    <a id="123456" class="btn btn-outline-light btn-sm" href="/tologin.html">登录</a>
+                </div>
+                <div class="col-md-3 login" th:if="${sessionTest.islogin == 1}">
+                    <div class="row">
+                        <div class="col-md">欢迎：[[${sessionTest.user.uName}]]</div>
+                    </div>
+                    <div class="row" style="margin-bottom: 15px;">
+                        <div class="col-md">邮箱：[[${sessionTest.user.uEmail}]]</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md"><a class="btn btn-outline-light btn-sm" href="/userDoLogout.html">注销登录</a></div>
+                    </div>
+                </div>
+                <div class="col-md-6 logo">
+                    <h1>院校失物招领</h1>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row middle">
+                <div class="col-md-3"></div>
+                <div class="col-md-2 hr">
+                    <hr>
+                </div>
+                <div class="col-md-2 ">
+                    服务于院校的便民网站
+                </div>
+                <div class="col-md-2 hr">
+                    <hr>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row down">
+                <div class="col-md .ml-auto">
+                    <a class="menu" href="/">首页</a>
+                </div>
+                <div class="col-md .ml-auto">
+                    <a class="menu" href="toListD.html">失物招领</a>
+                </div>
+                <div class="col-md .ml-auto">
+                    <a class="menu" href="toListF.html">寻物启事</a>
+                </div>
+                <div class="col-md .ml-auto" th:if="${sessionTest.islogin == 0}">
+                    <a class="menu" href="/tologin.html" >个人中心</a>
+                </div>
+                <div class="col-md .ml-auto" th:if="${sessionTest.islogin == 1}">
+                    <a class="menu" href="" >个人中心</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--body-->
+    <div class="container" style="width:1000px; padding-top:30px;">
+        <!--内容-->
+        <div c3lass="row ">
+            <div class="col-md massage">
+                <div th:if="${msgDetails.mType eq '1'}">
+                    <article>
+                        <h1 th:text="${msgDetails.mTitle}"></h1>
+                        <div style="line-height: 25px; padding: 5px;color:#c72c3b;font-size:12px;">公告：为防止用户信息被诈骗份子利用，即日起查看手机号须登录，院校失物招领网对恶意骚扰说不！</div>
+                        <blockquote class="layui-elem-quote layui-quote-nm">栏目：<a href="">寻物启事</a><span lay-separator=""> </span>
+                            发布时间：[[${msgDetails.mLaunchDate}]]<span lay-separator=""> </span>
+                        </blockquote>
+                        <fieldset class="layui-elem-field site-demo-button" style="margin-top: 30px;">
+                            <legend>信息详情</legend>
+
+                            <div class="layui-col-md12" >
+                                <div class="layui-card">
+                                    <div class="layui-card-header my1" th:if="${sessionTest.islogin == 0}">
+                                        <svg class="bi bi-phone" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M13 3H7a1 1 0 00-1 1v11a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM7 2a2 2 0 00-2 2v11a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系电话：
+                                            <a href="/tologin.html" >[请登录后查看联系方式]</a>
+                                    </div>
+                                    <div class="layui-card-header my1" th:if="${sessionTest.islogin == 1}">
+                                        <svg class="bi bi-phone" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M13 3H7a1 1 0 00-1 1v11a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM7 2a2 2 0 00-2 2v11a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系电话：[[${userDetails.uTelephone}]]
+                                    </div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-geo" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path d="M9.5 6h1v9a.5.5 0 01-1 0V6z"></path>
+                                            <path fill-rule="evenodd" d="M8.489 14.095a.5.5 0 01-.383.594c-.565.123-1.003.292-1.286.472-.302.192-.32.321-.32.339 0 .013.005.085.146.21.14.124.372.26.701.383.655.245 1.593.407 2.653.407s1.998-.162 2.653-.407c.329-.124.56-.259.701-.383.14-.125.146-.197.146-.21 0-.018-.018-.147-.32-.339-.283-.18-.721-.35-1.286-.472a.5.5 0 11.212-.977c.63.137 1.193.34 1.61.606.4.253.784.645.784 1.182 0 .402-.219.724-.483.958-.264.235-.618.423-1.013.57-.793.298-1.855.472-3.004.472s-2.21-.174-3.004-.471c-.395-.148-.749-.337-1.013-.571-.264-.234-.483-.556-.483-.958 0-.537.384-.929.783-1.182.418-.266.98-.47 1.611-.606a.5.5 0 01.595.383z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        丢失地点：[[${msgDetails.mAreaId}]] -- [[${msgDetails.mAreaDetail}]]</div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-person" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M15 16s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002zM5.022 15h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C13.516 12.68 12.289 12 10 12c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002zM10 9a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系人员：[[${userDetails.uName}]]</div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-calendar" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M16 2H4a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zM3 5.857C3 5.384 3.448 5 4 5h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H4c-.552 0-1-.384-1-.857V5.857z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M8.5 9a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        丢失时间：[[${msgDetails.mArticleTime}]]</div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-envelope-open" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M2.243 8.929l.514-.858L10 12.417l7.243-4.346.514.858L10 13.583 2.243 8.93z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M9.184 12.68l-6.432 3.752-.504-.864 6.432-3.752.504.864zm1.632 0l6.432 3.752.504-.864-6.432-3.752-.504.864z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M10.47 3.318a1 1 0 00-.94 0l-6 3.2A1 1 0 003 7.4V16a1 1 0 001 1h12a1 1 0 001-1V7.4a1 1 0 00-.53-.882l-6-3.2zm-1.41-.883a2 2 0 011.882 0l6 3.2A2 2 0 0118 7.4V16a2 2 0 01-2 2H4a2 2 0 01-2-2V7.4a2 2 0 011.059-1.765l6-3.2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系人邮箱：[[${userDetails.uEmail}]]</div>
+                                    <div class="layui-card-header  my2">
+                                        <svg class="bi bi-image" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M16.002 4h-12a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1zm-12-1a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2h-12z" clip-rule="evenodd"></path>
+                                            <path d="M12.648 9.646a.5.5 0 01.577-.093l3.777 1.947V16h-14v-2l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"></path>
+                                            <path fill-rule="evenodd" d="M6.502 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        物品照片：<img th:src="${msgDetails.mImage}" width="400px">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- page start -->
+                        <div class="pagination"><ul></ul></div>
+                        <!-- page end -->
+                    </article>
+                </div>
+
+                <div th:if="${msgDetails.mType eq '0'}">
+                    <article>
+                        <h1 th:text="${msgDetails.mTitle}"></h1>
+                        <div style="line-height: 25px; padding: 5px;color:#c72c3b;font-size:12px;">公告：为防止用户信息被诈骗份子利用，即日起查看手机号须登录，院校失物招领网对恶意骚扰说不！</div>
+                        <blockquote class="layui-elem-quote layui-quote-nm">栏目：<a href="">失物招领</a><span lay-separator=""> </span>
+                            发布时间：[[${msgDetails.mLaunchDate}]]<span lay-separator=""> </span></blockquote>
+                        <fieldset class="layui-elem-field site-demo-button" style="margin-top: 30px;">
+                            <legend>信息详情</legend>
+
+                            <div class="layui-col-md12">
+                                <div class="layui-card">
+                                    <div class="layui-card-header my1">
+                                        <svg class="bi bi-phone" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M13 3H7a1 1 0 00-1 1v11a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM7 2a2 2 0 00-2 2v11a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系电话：
+<!--                                        <c:if test="${userSession.uId == null}">-->
+<!--                                            <a href="${pageContext.request.contextPath}/user/toLogin">[请登录后查看联系方式]</a>-->
+<!--                                        </c:if>-->
+<!--                                        <c:if test="${userSession.uId != null}">-->
+<!--                                            ${userDetails.uTelephone}-->
+<!--                                        </c:if>-->
+                                    </div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-geo" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path d="M9.5 6h1v9a.5.5 0 01-1 0V6z"></path>
+                                            <path fill-rule="evenodd" d="M8.489 14.095a.5.5 0 01-.383.594c-.565.123-1.003.292-1.286.472-.302.192-.32.321-.32.339 0 .013.005.085.146.21.14.124.372.26.701.383.655.245 1.593.407 2.653.407s1.998-.162 2.653-.407c.329-.124.56-.259.701-.383.14-.125.146-.197.146-.21 0-.018-.018-.147-.32-.339-.283-.18-.721-.35-1.286-.472a.5.5 0 11.212-.977c.63.137 1.193.34 1.61.606.4.253.784.645.784 1.182 0 .402-.219.724-.483.958-.264.235-.618.423-1.013.57-.793.298-1.855.472-3.004.472s-2.21-.174-3.004-.471c-.395-.148-.749-.337-1.013-.571-.264-.234-.483-.556-.483-.958 0-.537.384-.929.783-1.182.418-.266.98-.47 1.611-.606a.5.5 0 01.595.383z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        拾物地点：[[${msgDetails.mAreaId}]] -- [[${msgDetails.mAreaDetail}]]</div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-person" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M15 16s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002zM5.022 15h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C13.516 12.68 12.289 12 10 12c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002zM10 9a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系人员：[[${userDetails.uName}]]</div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-calendar" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M16 2H4a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zM3 5.857C3 5.384 3.448 5 4 5h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H4c-.552 0-1-.384-1-.857V5.857z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M8.5 9a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        拾物时间：[[${msgDetails.mArticleTime}]]</div>
+                                    <div class="layui-card-header">
+                                        <svg class="bi bi-envelope-open" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M2.243 8.929l.514-.858L10 12.417l7.243-4.346.514.858L10 13.583 2.243 8.93z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M9.184 12.68l-6.432 3.752-.504-.864 6.432-3.752.504.864zm1.632 0l6.432 3.752.504-.864-6.432-3.752-.504.864z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M10.47 3.318a1 1 0 00-.94 0l-6 3.2A1 1 0 003 7.4V16a1 1 0 001 1h12a1 1 0 001-1V7.4a1 1 0 00-.53-.882l-6-3.2zm-1.41-.883a2 2 0 011.882 0l6 3.2A2 2 0 0118 7.4V16a2 2 0 01-2 2H4a2 2 0 01-2-2V7.4a2 2 0 011.059-1.765l6-3.2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系人邮箱：[[${userDetails.uEmail}]]</div>
+                                    <div class="layui-card-header  my2">
+                                        <svg class="bi bi-image" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M16.002 4h-12a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1zm-12-1a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2h-12z" clip-rule="evenodd"></path>
+                                            <path d="M12.648 9.646a.5.5 0 01.577-.093l3.777 1.947V16h-14v-2l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"></path>
+                                            <path fill-rule="evenodd" d="M6.502 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        物品照片：<img th:src="${msgDetails.mImage}"  width="400px"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- page start -->
+                        <div class="pagination"><ul></ul></div>
+                        <!-- page end -->
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <div id="Footer">
+        <p class="top-nav">
+            <span style="color: #000">友情链接：</span>
+
+            <a href="#" target="_blank">XXXX科技有限公司</a>
+
+            <a href="#" target="_blank">XXXXXX公司</a>
+
+            <a href="#" target="_blank">XX信息网</a>
+
+            <a href="#" target="_blank">XXX</a>
+        </p>
+
+        <p class="site-info">
+            <span>Copyright © 2019-2020 DEDECMS. 仅为个人学习项目 版权所有<a href="/" target="_blank">Power by 集宁师范学院-计算机学院-wenlan</a> 备案号：<a href="#" > 粤ICP备00000000号-1</a></span>
+        </p>
+        <a href="http://www.beian.miit.gov.cn" target="_blank"></a>
+    </div>
+</div>
+</body>
+</html>

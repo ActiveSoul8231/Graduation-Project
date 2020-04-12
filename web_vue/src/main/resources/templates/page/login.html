@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" href="https://activesoul8231.github.io/favicon%20(1).ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>失物招领-登录</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/now-ui-kit.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="/css/demo.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <script src="/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/js/login.js"></script>
+</head>
+<body>
+<div class="page-header" filter-color="3333">
+    <div class="page-header-image" style="background-image:url(http://www.jswyw.com/zt/kyfh/202002/W020200212435459141418.jpg)"></div>
+    <div class="container test44">
+        <div class="col-md content-center">
+            <h4 id="d1" style="text-align: center"></h4>
+            <div class="card card-login card-plain">
+                <form name="login" action="/userDoLogin" method="POST" id="search_form">
+                    <div class="header header-primary text-center">
+                        <div class="logo-container">
+                            <h5>院校失物招领</h5>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="input-group form-group-no-border input-lg">
+                            <span class="input-group-addon">
+                                <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M9 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H9zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 017 15c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 007 11c-4 0-5 3-5 4s1 1 1 1h4.216zM6.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+
+                            <input id="uName" maxlength="16" name="uName" th:value="${uName}" onblur="getUserFlag()"type="text" class="form-control" size="12" placeholder="手机号/邮箱">
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="input-group form-group-no-border input-lg">
+                            <span class="input-group-addon">
+                                <svg class="bi bi-unlock-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M2.5 10a2 2 0 012-2h7a2 2 0 012 2v5a2 2 0 01-2 2h-7a2 2 0 01-2-2v-5z"></path>
+                                  <path fill-rule="evenodd" d="M10.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                            <input  name="uPassword" maxlength="16" type="password" class="form-control" size="12" placeholder="密码">
+
+                        </div>
+                    </div>
+                    <div class="footer text-center">
+                        <input  class="btn btn-primary btn-round btn-lg btn-block" type="button" onclick="submitForm()" value="登录">
+                    </div>
+
+
+                    <!--<fieldset class="layui-elem-field" style="margin:20px"><legend>第三方登录</legend><div class="layui-field-box"><a href="https://www.shiwurenling.com/qqLogin/index.php"><img src="./登录_files/qq_login.png"> </a><a href="https://www.shiwurenling.com/wechat.html"><img src="./登录_files/1111.png"></a></div></fieldset>-->
+
+                    <div class="pull-left">
+                        <h6>
+                            <a href="/" class="link">返回首页</a>
+                        </h6>
+                    </div>
+                    <div class="pull-right">
+                        <h6>
+                            <a href="/toregister.html" class="link">注册</a>
+                        </h6>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="test111">
+            <span id="flag1"></span>
+        </div>
+        <div class="test2222">
+            <span id="flag2"></span>
+        </div>
+    </div>
+    <footer class="footer">
+
+        <div class="copyright">
+            © , Designed by  <a href="#" target="_blank" title="">院校失物招领</a>
+        </div>
+    </footer>
+
+    <script>
+        //自定页
+
+        // layer.open({
+        //     type: 1,
+        //     skin: 'layui-layer-demo', //样式类名
+        //     closeBtn: 0, //不显示关闭按钮
+        //     anim: 2,
+        //     shadeClose: true, //开启遮罩关闭
+        //     content: '内容'
+        // });
+    </script>
+</div>
+</body>
+</html>

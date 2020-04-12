@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.website.web_vue.mapper.FindOrDiscoverMapper">
+    <select id="getMTypeZero" resultType="com.website.web_vue.pojo.FindOrDiscover" >
+        select t3.m_id  mId, t3.m_type mType, t4.res_name mArticleTypeId, t3.m_post_status mPostStatus, t3.area_name mAreaId, t3.m_area_detail mAreaDetail, t3.m_launch_date mLaunchDate, t3.m_u_id mUId, t3.m_del_status mDelStatus, t3.m_title mTitle, t3.m_article_time mArticleTime, t3.m_image mImage from (SELECT t1.m_id, t1.m_type, t1.m_article_type_id, t1.m_post_status, t2.area_name, t1.m_area_detail, t1.m_launch_date, t1.m_u_id, t1.m_del_status, t1.m_title, t1.m_article_time, t1.m_image FROM (select * from tb_find_or_discover where m_type = 0 AND m_del_status=0 AND m_post_status=1) t1 LEFT JOIN tb_area_dictionary t2 ON t1.m_area_id=t2.area_id) t3 LEFT JOIN tb_article_dictionary t4 ON t3.m_article_type_id=t4.res_id ORDER BY t3.m_id desc limit 0,10
+    </select>
+
+    <select id="getMTypeOne" resultType="com.website.web_vue.pojo.FindOrDiscover">
+        select t3.m_id  mId, t3.m_type mType, t4.res_name mArticleTypeId, t3.m_post_status mPostStatus, t3.area_name mAreaId, t3.m_area_detail mAreaDetail, t3.m_launch_date mLaunchDate, t3.m_u_id mUId, t3.m_del_status mDelStatus, t3.m_title mTitle, t3.m_article_time mArticleTime, t3.m_image mImage from (SELECT t1.m_id, t1.m_type, t1.m_article_type_id, t1.m_post_status, t2.area_name, t1.m_area_detail, t1.m_launch_date, t1.m_u_id, t1.m_del_status, t1.m_title, t1.m_article_time, t1.m_image FROM (select * from tb_find_or_discover where m_type = 1 AND m_del_status=0 AND m_post_status=1) t1 LEFT JOIN tb_area_dictionary t2 ON t1.m_area_id=t2.area_id) t3 LEFT JOIN tb_article_dictionary t4 ON t3.m_article_type_id=t4.res_id ORDER BY t3.m_id desc limit 0,10
+    </select>
+
+    <select id="getMTypeZeroAll" resultType="FindOrDiscover">
+        select t3.m_id mId, t3.m_type mType, t4.res_name mArticleTypeId, t3.m_post_status mPostStatus, t3.area_name mAreaId, t3.m_area_detail mAreaDetail, t3.m_launch_date mLaunchDate, t3.m_u_id mUId, t3.m_del_status mDelStatus, t3.m_title mTitle, t3.m_article_time mArticleTime, t3.m_image mImage from (SELECT t1.m_id, t1.m_type, t1.m_article_type_id, t1.m_post_status, t2.area_name, t1.m_area_detail, t1.m_launch_date, t1.m_u_id, t1.m_del_status, t1.m_title, t1.m_article_time, t1.m_image FROM (select * from tb_find_or_discover where m_type = 0 AND m_del_status=0 AND m_post_status=1) t1 LEFT JOIN tb_area_dictionary t2 ON t1.m_area_id=t2.area_id) t3 LEFT JOIN tb_article_dictionary t4 ON t3.m_article_type_id=t4.res_id
+    </select>
+
+    <select id="getMTypeOneAll" resultType="FindOrDiscover">
+        select t3.m_id mId, t3.m_type mType, t4.res_name mArticleTypeId, t3.m_post_status mPostStatus, t3.area_name mAreaId, t3.m_area_detail mAreaDetail, t3.m_launch_date mLaunchDate, t3.m_u_id mUId, t3.m_del_status mDelStatus, t3.m_title mTitle, t3.m_article_time mArticleTime, t3.m_image mImage from (SELECT t1.m_id, t1.m_type, t1.m_article_type_id, t1.m_post_status, t2.area_name, t1.m_area_detail, t1.m_launch_date, t1.m_u_id, t1.m_del_status, t1.m_title, t1.m_article_time, t1.m_image FROM (select * from tb_find_or_discover where m_type = 1 AND m_del_status=0 AND m_post_status=1) t1 LEFT JOIN tb_area_dictionary t2 ON t1.m_area_id=t2.area_id) t3 LEFT JOIN tb_article_dictionary t4 ON t3.m_article_type_id=t4.res_id
+    </select>
+
+    <select id="getByMId" parameterType="FindOrDiscover" resultType="FindOrDiscover">
+        select t3.m_id mId, t3.m_type mType, t4.res_name mArticleTypeId, t3.m_post_status mPostStatus, t3.area_name mAreaId, t3.m_area_detail mAreaDetail, t3.m_launch_date mLaunchDate, t3.m_u_id mUId, t3.m_del_status mDelStatus, t3.m_title mTitle, t3.m_article_time mArticleTime, t3.m_image mImage from (SELECT t1.m_id, t1.m_type, t1.m_article_type_id, t1.m_post_status, t2.area_name, t1.m_area_detail, t1.m_launch_date, t1.m_u_id, t1.m_del_status, t1.m_title, t1.m_article_time, t1.m_image FROM (select * from tb_find_or_discover where m_id=#{mId} AND m_del_status=0) t1 LEFT JOIN tb_area_dictionary t2 ON t1.m_area_id=t2.area_id) t3 LEFT JOIN tb_article_dictionary t4 ON t3.m_article_type_id=t4.res_id
+    </select>
+
+    <insert id="insertFind" parameterType="com.website.web_vue.pojo.FindOrDiscover">
+        insert into tb_find_or_discover(m_type,m_article_type_id,m_area_id,m_area_detail,m_launch_date,m_u_id,m_title,m_article_time,m_image) VALUES('1',#{mArticleTypeId},#{mAreaId},#{mAreaDetail},#{mLaunchDate},#{mUId},#{mTitle},#{mArticleTime},#{mImage})
+    </insert>
+
+    <insert id="insertDiscover" parameterType="com.website.web_vue.pojo.FindOrDiscover">
+        insert into tb_find_or_discover(m_type,m_article_type_id,m_area_id,m_area_detail,m_launch_date,m_u_id,m_title,m_article_time,m_image) VALUES('0',#{mArticleTypeId},#{mAreaId},#{mAreaDetail},#{mLaunchDate},#{mUId},#{mTitle},#{mArticleTime},#{mImage})
+    </insert>
+
+    <select id="getByMUid" resultType="com.website.web_vue.pojo.FindOrDiscover">
+        select t3.m_id mId, t3.m_type mType, t4.res_name mArticleTypeId, t3.m_post_status mPostStatus, t3.area_name mAreaId, t3.m_area_detail mAreaDetail, t3.m_launch_date mLaunchDate, t3.m_u_id mUId, t3.m_del_status mDelStatus, t3.m_title mTitle, t3.m_article_time mArticleTime, t3.m_image mImage from (SELECT t1.m_id, t1.m_type, t1.m_article_type_id, t1.m_post_status, t2.area_name, t1.m_area_detail, t1.m_launch_date, t1.m_u_id, t1.m_del_status, t1.m_title, t1.m_article_time, t1.m_image FROM (select * from tb_find_or_discover where m_u_id=#{mUId} AND m_del_status=0) t1 LEFT JOIN tb_area_dictionary t2 ON t1.m_area_id=t2.area_id) t3 LEFT JOIN tb_article_dictionary t4 ON t3.m_article_type_id=t4.res_id
+    </select>
+
+    <update id="toUpdatePost" parameterType="com.website.web_vue.pojo.FindOrDiscover">
+        update tb_find_or_discover set m_post_status = #{mPostStatus} where m_id = #{mId};
+    </update>
+
+    <update id="toUpdateDel" parameterType="com.website.web_vue.pojo.FindOrDiscover">
+        update tb_find_or_discover set m_del_status = #{mDelStatus} where m_id = #{mId};
+    </update>
+
+
+
+
+    <!--    <insert id="add" parameterType="Hero" >-->
+    <!--            insert into hero ( name,hp ) values (#{name},#{hp})-->
+<!--        </insert>-->
+
+<!--    <delete id="delete" parameterType="Hero" >-->
+<!--            delete from hero where id= #{id}-->
+<!--        </delete>-->
+
+<!--    <select id="get" parameterType="_int" resultType="Hero">-->
+<!--            select * from   hero  where id= #{id}-->
+<!--        </select>-->
+
+<!--    <update id="update" parameterType="Hero" >-->
+<!--            update hero set name=#{name}, hp = #{hp} where id=#{id}-->
+<!--        </update>-->
+<!--    <select id="list" resultType="Hero">-->
+<!--            select * from   hero-->
+<!--        </select>-->
+</mapper>

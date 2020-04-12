@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" href="https://activesoul8231.github.io/favicon%20(1).ico">
+    <meta charset="UTF-8">
+    <title>失物招领-注册</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/now-ui-kit.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/register.css">
+    <link href="/css/demo.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <script src="/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/js/register.js"></script>
+</head>
+<body class="login-page sidebar-collapse">
+<div class="page-header" filter-color="3333">
+    <!--背景图片来自&#45;&#45;http://www.jswyw.com/zt/kyfh/202002/t20200212_6506686.shtml-->
+    <div class="page-header-image" style="filter: blur(1px); background-image:url(http://www.jswyw.com/zt/kyfh/202002/W020200212435459141418.jpg)"></div>
+    <div class="container">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 content-center">
+            <h4 id="d1" style="text-align: center"></h4>
+            <div class="card card-login card-plain">
+                <form name="register" action="/userRegister" method="POST" id="search_form" enctype="multipart/form-data">
+                    <div class="header header-primary text-center">
+                        <div class="logo-container">
+                            <h5>院校失物招领</h5>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <!--账号-->
+                        <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" d="M9 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H9zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 017 15c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 007 11c-4 0-5 3-5 4s1 1 1 1h4.216zM6.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+
+                            <input id="uName" maxlength="16" name="uName" th:value="${uName}" onblur="getName()"type="text" class="form-control" size="12" placeholder="帐号/名字">
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <svg class="bi bi-unlock-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M2.5 10a2 2 0 012-2h7a2 2 0 012 2v5a2 2 0 01-2 2h-7a2 2 0 01-2-2v-5z"></path>
+                                      <path fill-rule="evenodd" d="M10.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                            <input  id="password1" maxlength="16" onblur="passwordZZ()"  name="uPassword" type="password" class="form-control" size="12" placeholder="密码">
+
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <svg class="bi bi-unlock-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M2.5 10a2 2 0 012-2h7a2 2 0 012 2v5a2 2 0 01-2 2h-7a2 2 0 01-2-2v-5z"></path>
+                                      <path fill-rule="evenodd" d="M10.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                            <input  id="password2"  maxlength="16" onblur="passwordVerification()"  type="password" class="form-control" size="12" placeholder="再输入一次密码">
+
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <svg class="bi bi-envelope-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M2.05 5.555L10 10.414l7.95-4.859A2 2 0 0016 4H4a2 2 0 00-1.95 1.555zM18 6.697l-5.875 3.59L18 13.743V6.697zm-.168 8.108l-6.675-3.926-1.157.707-1.157-.707-6.675 3.926A2 2 0 004 16h12a2 2 0 001.832-1.195zM2 13.743l5.875-3.456L2 6.697v7.046z"></path>
+                                    </svg>
+                                </span>
+                            <input  type="email" maxlength="30"  placeholder="邮箱" id="email" name="uEmail" onblur="getUserEmailFlag1()" class="form-control" size="12">
+
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <svg class="bi bi-document-code" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" d="M6 3h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm0 1a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V5a1 1 0 00-1-1H6z" clip-rule="evenodd"></path>
+                                      <path fill-rule="evenodd" d="M10.646 7.646a.5.5 0 01.708 0l2 2a.5.5 0 010 .708l-2 2a.5.5 0 01-.708-.708L12.293 10l-1.647-1.646a.5.5 0 010-.708zm-1.292 0a.5.5 0 00-.708 0l-2 2a.5.5 0 000 .708l2 2a.5.5 0 00.708-.708L7.707 10l1.647-1.646a.5.5 0 000-.708z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                            <input type="text" id="mailCode"  name="mailCode" onblur="validataMailCode()" class="form-control" size="12" placeholder="验证码">
+                            <input type="button" class="btn btn-outline-success rounded-pill" onclick="sendEmail(this)" id="getverification2" value="点击获取验证码"/>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" d="M13 3H7a1 1 0 00-1 1v11a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM7 2a2 2 0 00-2 2v11a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7z" clip-rule="evenodd"></path>
+                                      <path fill-rule="evenodd" d="M10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                            <input type="text" maxlength="11" id="userTel"  name="uTelephone" onblur="getUserTel1()" class="form-control" size="12" placeholder="手机号">
+
+                        </div>
+
+                    </div>
+                    <div class="footer text-center">
+                        <input  class="btn btn-primary btn-round btn-lg btn-block" onclick="submitForm()" value="确认注册">
+                    </div>
+                    <div class="pull-left">
+                        <h6>
+                            <a href="/" class="link">返回首页</a>
+                        </h6>
+                    </div>
+
+                    <div class="pull-right">
+                        <h6>  <a href="/tologin.html" style="color: #f96332;" >已有帐号直接登录</a>
+                        </h6>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="test111">
+            <span id="flag1"></span>
+        </div>
+        <div class="test2222">
+            <span id="flag2"></span>
+        </div>
+        <div class="test3333">
+            <span id="flag3"></span>
+        </div>
+        <div class="test4444">
+            <span id="flag4"></span>
+        </div>
+        <div class="test5555">
+            <span id="flag5"></span>
+        </div>
+        <div class="test6666">
+            <span id="flag6"></span>
+        </div>
+        <div class="test7777">
+            <span id="flag7">
+                <h5 style="color: crimson;">注册公告</h5>
+                <p>您注册时填写的姓名将作为联系人姓名，请注册时认真填写注册信息</p>
+                <p>您注册时填写的手机号将作为您发布消息时别人联系你的手机号，请注册时认真填写注册信息</p>
+                <p>您注册时填写的邮箱将会接受一条验证码，请注册时认真填写注册信息</p>
+            </span>
+        </div>
+    </div>
+    <footer class="footer">
+
+        <div class="copyright">
+            © , Designed by  <a href="#" target="_blank" title="">院校失物招领</a>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

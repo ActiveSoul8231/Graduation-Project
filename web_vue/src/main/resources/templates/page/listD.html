@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" type="image/png" href="https://activesoul8231.github.io/favicon%20(1).ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/listD.css">
+    <script src="/js/heroJs/jquery.min.js"></script>
+    <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="/js/heroJs/vue.min.js"></script>
+    <script src="/js/heroJs/axios.min.js"></script>
+    <script src="/js/popper/popper.js"></script>
+    <script src="/layer/layer.js"></script>
+    <title>失物招领-招领列表</title>
+    <script>
+        $(function(){
+            $("a.disableHref").click(function(event){
+                return false;
+// 	    		  event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container-fluid" style="padding:0px;">
+    <!--head-->
+    <div class="container-fluid first">
+            <div class="container ssss">
+                <div class="row top">
+                    <div class="col-md-3 login" th:if="${sessionTest.islogin == 0}">
+                        <a id="123456" class="btn btn-outline-light btn-sm" href="/tologin.html">登录</a>
+                    </div>
+                    <div class="col-md-3 login" th:if="${sessionTest.islogin == 1}">
+                        <div class="row">
+                            <div class="col-md">欢迎：[[${sessionTest.user.uName}]]</div>
+                        </div>
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md">邮箱：[[${sessionTest.user.uEmail}]]</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md"><a class="btn btn-outline-light btn-sm" href="/userDoLogout.html">注销登录</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 logo">
+                        <h1>院校失物招领</h1>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row middle">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2 hr">
+                        <hr>
+                    </div>
+                    <div class="col-md-2 ">
+                        服务于院校的便民网站
+                    </div>
+                    <div class="col-md-2 hr">
+                        <hr>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row down">
+                    <div class="col-md .ml-auto">
+                        <a class="menu" href="/">首页</a>
+                    </div>
+                    <div class="col-md .ml-auto">
+                        <a class="menu" href="javascript:location.replace(location.href);">失物招领</a>
+                    </div>
+                    <div class="col-md .ml-auto">
+                        <a class="menu" href="toListF.html">寻物启事</a>
+                    </div>
+                    <div class="col-md .ml-auto" th:if="${sessionTest.islogin == 0}">
+                        <a class="menu" href="/tologin.html" >个人中心</a>
+                    </div>
+                    <div class="col-md .ml-auto" th:if="${sessionTest.islogin == 1}">
+                        <a class="menu" href="" >个人中心</a>
+                    </div>
+                </div>
+            </div>
+</div>
+    <!--body-->
+    <div id="appD" class="container" style="width:1000px;">
+        <!--内容-->
+
+        <div class="pagination" >
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==1 }"><a  class="page-link" href="#"  @click="jump('first')">首页</a></li>
+                    <li class="page-item" :class="{ disabled: !pagination.hasPreviousPage }"><a class="page-link" href="#" @click="jump('pre')">上一页</a></li>
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==i}" v-for="i in pagination.navigatepageNums" @click="jumpByNumber(i)"><a class="page-link" href="#">{{i}}</a></li>
+                    <li class="page-item" :class="{ disabled: !pagination.hasNextPage }"><a class="page-link" href="#" @click="jump('next')">下一页</a></li>
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==pagination.pages}"><a class="page-link" href="#" @click="jump('last')">尾页</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row massage" id="banners" v-for="typeZero in allList">
+            <div class="col-md-12">
+                <div class="feed_tegao long">
+                    <h4>
+                        <a  :href="'toDetails.html?mId='+typeZero.mId" >{{typeZero.mAreaId}}:{{typeZero.mTitle}}</a>
+                    </h4>
+                    <p class="picture"><a :href="'toDetails.html?mId='+typeZero.mId" ><img :src="typeZero.mImage" :alt="typeZero.mAreaId+':'+typeZero.mTitle"></a></p>
+                    <p class="summary">所在地点：{{typeZero.mAreaId}} <br>发布时间：{{typeZero.mLaunchDate}}<br>信息类型：失物招领</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination" >
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==1 }"><a  class="page-link" href="#"  @click="jump('first')">首页</a></li>
+                    <li class="page-item" :class="{ disabled: !pagination.hasPreviousPage }"><a class="page-link" href="#" @click="jump('pre')">上一页</a></li>
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==i}" v-for="i in pagination.navigatepageNums" @click="jumpByNumber(i)"><a class="page-link" href="#">{{i}}</a></li>
+                    <li class="page-item" :class="{ disabled: !pagination.hasNextPage }"><a class="page-link" href="#" @click="jump('next')">下一页</a></li>
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==pagination.pages}"><a class="page-link" href="#" @click="jump('last')">尾页</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--
+        <a :class="{ disableHref: pagination.pageNum==1 }" href="#nowhere" @click="jump('first')">[first]</a>
+            <a :class="{ disableHref: !pagination.hasPreviousPage }" href="#nowhere" @click="jump('pre')">[pre]</a>
+
+            <a href="#nowhere" :class="{disableHref:pagination.pageNum==i}"  v-for="i in pagination.navigatepageNums" @click="jumpByNumber(i)" >
+                {{i}}
+            </a>
+
+            <a :class="{ disableHref: !pagination.hasNextPage }" href="#nowhere" @click="jump('next')">[next]</a>
+            <a :class="{ disableHref: pagination.pageNum==pagination.pages }" href="#nowhere" @click="jump('last')">[last]</a>
+        -->
+    </div>
+    <!--footer-->
+    <div id="Footer">
+            <p class="top-nav">
+                <span style="color: #000">友情链接：</span>
+
+                <a href="#" target="_blank">XXXX科技有限公司</a>
+
+                <a href="#" target="_blank">XXXXXX公司</a>
+
+                <a href="#" target="_blank">XX信息网</a>
+
+                <a href="#" target="_blank">XXX</a>
+            </p>
+
+            <p class="site-info">
+                <span>Copyright © 2019-2020 DEDECMS. 仅为个人学习项目 版权所有<a href="/" target="_blank">Power by 集宁师范学院-计算机学院-wenlan</a> 备案号：<a href="#" > 粤ICP备00000000号-1</a></span>
+            </p>
+            <a href="http://www.beian.miit.gov.cn" target="_blank"></a>
+    </div>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el:'#appD',
+        data:{
+            allList:[],
+            pagination:{}
+        },
+        mounted:function () {
+            this.findlistD(1);
+        },
+        methods:{
+            findlistD:function (start) {
+                var ss = this;
+                var url = "getAllListD?start="+start;
+                layer.load(1, {
+                    shade: [0.1,'#fff'] //0.1透明度的白色背景
+                })
+                axios.get(url).then(function (data) {
+                    vue.pagination = data.data.data;
+                    console.log(vue.pagination);
+                    console.log(data.data)
+                    if (data.status=='200'){
+                        ss.allList = data.data.data.list;
+                    }else{
+                        alert("lian连接服务器失败")
+                    }
+                    layer.closeAll();
+                })
+            },
+            jump: function(page){
+                if('first'== page && 1!=vue.pagination.pageNum)
+                    vue.findlistD(1);
+
+                else if('pre'== page &&	vue.pagination.hasPreviousPage )
+                    vue.findlistD(vue.pagination.prePage);
+
+                else if('next'== page && vue.pagination.hasNextPage)
+                    vue.findlistD(vue.pagination.nextPage);
+
+                else if('last'== page && vue.pagination.pageNum!=vue.pagination.pages)
+                    vue.findlistD(vue.pagination.pages);
+
+            },
+            jumpByNumber: function(start){
+                if(start!=vue.pagination.pageNum)
+                    vue.findlistD(start);
+            }
+        }
+    })
+</script>
+</body>
+</html>

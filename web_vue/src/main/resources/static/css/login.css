@@ -1,0 +1,28 @@
+span{
+    color: #FFFFFF;
+}
+.test111{
+    position: fixed;
+    top: 45%;
+    left: 34%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 15px;
+    color: #FFFFFF;
+    /*width: 100%;*/
+    max-width: 880px;
+}
+.test2222{
+    position: fixed;
+    top: 60%;
+    left: 34%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 15px;
+    color: #FFFFFF;
+    /*width: 100%;*/
+    max-width: 880px;
+}
+.test44{
+    max-width: 380px;
+}

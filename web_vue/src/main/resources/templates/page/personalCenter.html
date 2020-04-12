@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" href="https://activesoul8231.github.io/favicon%20(1).ico">
+    <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/personalCenter.css">
+    <script src="/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <!--    <script src="/js/heroJs/jquery.min.js"></script>-->
+    <script src="/js/heroJs/axios.min.js"></script>
+    <!--    <script src="/js/popper/popper.js"></script>-->
+    <script src="/layer/layer.js"></script>
+    <title>失物招领-个人中心</title>
+</head>
+<body>
+<div class="container-fluid" style="padding:0px;">
+    <!--head-->
+    <div class="container-fluid first">
+        <div class="container">
+            <div class="row top">
+                <div class="col-md-3 login" th:if="${sessionTest.islogin == 0}">
+                    <!--                    <a  class="btn btn-outline-light"  value="测试功能" href="/toTest">测试功能</a>-->
+                    <a id="123456" class="btn btn-outline-light btn-sm" href="/tologin.html">登录</a>
+                </div>
+                <div class="col-md-3 login" th:if="${sessionTest.islogin == 1}">
+                    <div class="row">
+                        <div class="col-md">欢迎：[[${sessionTest.user.uName}]]</div>
+                    </div>
+                    <div class="row" style="margin-bottom: 15px;">
+                        <div class="col-md">邮箱：[[${sessionTest.user.uEmail}]]</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md"><a class="btn btn-outline-light btn-sm" href="/userDoLogout.html">注销登录</a></div>
+                    </div>
+                </div>
+                <div class="col-md-6 logo">
+                    <h1>院校失物招领</h1>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row middle">
+                <div class="col-md-3"></div>
+                <div class="col-md-2 hr">
+                    <hr>
+                </div>
+                <div class="col-md-2 ">
+                    服务于院校的便民网站
+                </div>
+                <div class="col-md-2 hr">
+                    <hr>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row down">
+                <div class="col-md .ml-auto">
+                    <a class="menu" href="/">首页</a>
+                </div>
+                <div class="col-md .ml-auto">
+                    <a class="menu" href="toListD.html">失物招领</a>
+                </div>
+                <div class="col-md .ml-auto">
+                    <a class="menu" href="toListF.html">寻物启事</a>
+                </div>
+                <div class="col-md .ml-auto" th:if="${sessionTest.islogin == 0}">
+                    <!--                    <script>layer.msg("请登录")</script>-->
+                    <a class="menu" href="/tologin.html" >个人中心</a>
+                </div>
+                <div class="col-md .ml-auto" th:if="${sessionTest.islogin == 1}">
+                    <a class="menu" href="javascript:location.replace(location.href);" >个人中心</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--body-->
+    <div class="abcd">
+        <span id="flag1"></span>
+        <span id="flag3"></span>
+        <span id="flag4"></span>
+    </div>
+    <div class="container" style="width:1000px; padding-top:30px;" id="app">
+        <div class="row massage">
+            <div class="col-md">
+                <h3>我的账号:</h3>
+                <hr>
+            </div>
+        </div>
+        <div class="row massage">
+            <div class="col-md ">
+                <p>姓名： {{personalList.userMs.uName}}</p>
+                <p>邮箱： {{personalList.userMs.uEmail}}</p>
+            </div>
+            <div class="col-md ">
+                <p><button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#userUpdateName">修改名字</button>&nbsp;<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#userUpdateEmail">修改邮箱</button>&nbsp;<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#userUpdatePassword">修改密码</button></p>
+            </div>
+        </div>
+
+
+        <!-- Modal          修改名字 -->
+        <div class="modal fade" id="userUpdateName" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="userUpdateNameTitle">修改用户名</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="changeUserName" action="/userUpdateName" method="POST" enctype="multipart/form-data">
+                            <label for="newName">填写新的用户名（注意格式）：</label><br>
+                            <input id="newName" name="uName" :placeholder="personalList.userMs.uName"><br>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="toSaveChanges()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal         修改邮箱   -->
+        <div class="modal fade" id="userUpdateEmail" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="userUpdateEmailTitle">修改邮箱</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="changeUserEmail" action="${pageContext.request.contextPath}/user/userUpdateEmail" method="POST" enctype="multipart/form-data" style="margin: 15px auto 15px auto;padding: 0px 15%;">
+                            <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <svg class="bi bi-envelope-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M2.05 5.555L10 10.414l7.95-4.859A2 2 0 0016 4H4a2 2 0 00-1.95 1.555zM18 6.697l-5.875 3.59L18 13.743V6.697zm-.168 8.108l-6.675-3.926-1.157.707-1.157-.707-6.675 3.926A2 2 0 004 16h12a2 2 0 001.832-1.195zM2 13.743l5.875-3.456L2 6.697v7.046z"></path>
+                                            </svg>
+                                        </span>
+                                <input  type="email" maxlength="30"  id="newEmail" name="uEmail" :placeholder="personalList.userMs.uEmail" class="form-control" size="12">
+
+                            </div>
+                            <div style="clear:both">&nbsp;</div>
+                            <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <svg class="bi bi-document-code" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M6 3h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm0 1a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V5a1 1 0 00-1-1H6z" clip-rule="evenodd"></path>
+                                              <path fill-rule="evenodd" d="M10.646 7.646a.5.5 0 01.708 0l2 2a.5.5 0 010 .708l-2 2a.5.5 0 01-.708-.708L12.293 10l-1.647-1.646a.5.5 0 010-.708zm-1.292 0a.5.5 0 00-.708 0l-2 2a.5.5 0 000 .708l2 2a.5.5 0 00.708-.708L7.707 10l1.647-1.646a.5.5 0 000-.708z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
+                                <input type="text" id="mailCode"  name="mailCode"  class="form-control" size="12" placeholder="验证码">
+                                <input type="button" class="btn btn-outline-success rounded-pill" onclick="sendEmail(this)" id="getverification2" value="点击获取验证码"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="toSaveChangeEmail()">提交更改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal         修改密码   -->
+         <div class="modal fade" id="userUpdatePassword" tabindex="-1" role="dialog" data-backdrop="static"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="userUpdatePasswordTitle">修改密码</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="changeUserPassword" action="${pageContext.request.contextPath}/user/userUpdatePassword" method="POST" enctype="multipart/form-data" style="margin: 15px auto 15px auto;padding: 0px 15%;">
+                            <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <svg class="bi bi-unlock-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M2.5 10a2 2 0 012-2h7a2 2 0 012 2v5a2 2 0 01-2 2h-7a2 2 0 01-2-2v-5z"></path>
+                                                  <path fill-rule="evenodd" d="M10.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+                                <input type="hidden" id="successPassword" value="${userMs.uPassword}">
+                                <input  type="password" maxlength="16"  id="oldPassword"  placeholder="请您输入您修改之前的密码" class="form-control" size="12">
+                            </div>
+                            <div style="clear:both">&nbsp;</div>
+                            <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <svg class="bi bi-unlock-fill" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M2.5 10a2 2 0 012-2h7a2 2 0 012 2v5a2 2 0 01-2 2h-7a2 2 0 01-2-2v-5z"></path>
+                                                  <path fill-rule="evenodd" d="M10.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+                                <input  type="password" maxlength="16"  id="newPassword" name="uPassword" placeholder="请您输入新的密码" class="form-control" size="12">
+                            </div>
+                            <div style="clear:both">&nbsp;</div>
+                            <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <svg class="bi bi-document-code" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                  <path fill-rule="evenodd" d="M6 3h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm0 1a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V5a1 1 0 00-1-1H6z" clip-rule="evenodd"></path>
+                                                  <path fill-rule="evenodd" d="M10.646 7.646a.5.5 0 01.708 0l2 2a.5.5 0 010 .708l-2 2a.5.5 0 01-.708-.708L12.293 10l-1.647-1.646a.5.5 0 010-.708zm-1.292 0a.5.5 0 00-.708 0l-2 2a.5.5 0 000 .708l2 2a.5.5 0 00.708-.708L7.707 10l1.647-1.646a.5.5 0 000-.708z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+                                <input  type="hidden" maxlength="30"  id="userEmail" name="uEmail" value="${userMs.uEmail}" class="form-control" size="12">
+                                <input type="text" id="mailCode2"  name="mailCode"  class="form-control" size="12" placeholder="修改密码需邮箱验证">
+                                <input type="button" class="btn btn-outline-success rounded-pill" onclick="sendEmail2(this)" id="getverification2" value="点击获取验证码"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="toSaveChangePassword()">提交更改</button>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+
+        <!--内容-->
+        <div class="row massage" style="margin-top:15px;">
+            <div class="col-md">
+                <h3>我的消息:</h3>
+                <hr>
+            </div>
+        </div>
+        <div class="pagination" >
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==1 }"><a  class="page-link" href="#"  @click="jump('first')">首页</a></li>
+                    <li class="page-item" :class="{ disabled: !pagination.hasPreviousPage }"><a class="page-link" href="#" @click="jump('pre')">上一页</a></li>
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==i}" v-for="i in pagination.navigatepageNums" @click="jumpByNumber(i)"><a class="page-link" href="#">{{i}}</a></li>
+                    <li class="page-item" :class="{ disabled: !pagination.hasNextPage }"><a class="page-link" href="#" @click="jump('next')">下一页</a></li>
+                    <li class="page-item" :class="{ disabled: pagination.pageNum==pagination.pages}"><a class="page-link" href="#" @click="jump('last')">尾页</a></li>
+                </ul>
+            </nav>
+        </div>
+            <div class="row massage" id="banners" v-for="LaunchMs in personalList.personListMs.list">
+                <div class="col-md-12" >
+                    <div class="feed_tegao long" >
+                        <h5>
+                            <a :href="'toDetails.html?mId='+LaunchMs.mId" target="_blank">{{LaunchMs.mAreaId}}:{{LaunchMs.mTitle}}</a>
+                        </h5>
+                        <p class="picture"><a :href="'toDetails.html?mId='+LaunchMs.mId" target="_blank"><img :src="LaunchMs.mImage" :alt="LaunchMs.mAreaId+':'+LaunchMs.mTitle"></a></p>
+<!--                        <button type="button" class="btn btn-outline-danger del" data-toggle="tooltip" data-placement="top" title="删除后的信息将在个人中心消失，如需恢复请联系管理员" onclick="todel(/*{{LaunchMs.mId}}*/)">删除消息</button>-->
+                        <button type="button" class="btn btn-outline-danger del" data-toggle="tooltip" data-placement="top" title="删除后的信息将在个人中心消失，如需恢复请联系管理员" @click="todel(LaunchMs.mId,pagination.pageNum)">删除消息</button>
+                        <button v-if="LaunchMs.mPostStatus === '1'" type="button" class="btn btn-warning del-1" title="如果您的这个物品已寻回，请点我"  @click="toPost(LaunchMs.mId,pagination.pageNum,1)">已经找到</button>
+                        <button v-if="LaunchMs.mPostStatus === '0'" type="button" class="btn btn-success del-1"   title="需要公开展示消息？点我公开" @click="toPost(LaunchMs.mId,pagination.pageNum,0)">重新发布</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+<!--foote-->
+    <div id="Footer">
+        <p class="top-nav">
+            <span style="color: #000">友情链接：</span>
+
+            <a href="#" target="_blank">XXXX科技有限公司</a>
+
+            <a href="#" target="_blank">XXXXXX公司</a>
+
+            <a href="#" target="_blank">XX信息网</a>
+
+            <a href="#" target="_blank">XXX</a>
+        </p>
+
+        <p class="site-info">
+            <span>Copyright © 2019-2020 DEDECMS. 仅为个人学习项目 版权所有<a href="/" target="_blank">Power by 集宁师范学院-计算机学院-wenlan</a> 备案号：<a href="#" > 粤ICP备00000000号-1</a></span>
+        </p>
+        <a href="http://www.beian.miit.gov.cn" target="_blank"></a>
+    </div>
+</div>
+
+</body>
+
+<script src="/js/vue.js"></script>
+<script src="/js/personalCenter.js"></script>
+<script type="text/javascript">
+    // $(function () {
+    //     setTimeout(function () {
+    //         $('[data-toggle="tooltip"]').tooltip();
+    //     },500)
+    //    // $('[data-toggle="tooltip"]').tooltip();
+    //     // $('#example').tooltip(options);
+    // });
+</script>
+</html>

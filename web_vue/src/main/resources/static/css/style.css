@@ -1,0 +1,268 @@
+div.showing{
+    width:80%;
+    margin:20px auto;
+    border:1px solid grey;
+    padding:30px;
+}
+
+.even{
+    background-color: red;
+}
+.odd{
+    background-color: green;
+}
+
+
+body{
+    text-align:center;
+    line-height: 24px;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+}
+hr{
+    background-color: #FEFAF5;
+    /*height:0.5px;*/
+}
+.login{
+    padding-top:15px;
+}
+.first{
+    height: 220px;
+    background-color: #c82b3a;
+    padding:0px;
+    color: #FEFAF5;
+}
+/* 媒体选择器 */
+
+/* <= 414 */
+@media screen and (max-width: 414px){
+    .first{
+        height: 340px;
+        background-color: #c82b3a;
+        padding:0px;
+        color: #FEFAF5;
+    }
+}
+
+
+
+
+
+.top a:not([href]){
+color: aliceblue;;
+}
+.logo{
+    text-align: center;
+    margin:5% auto 2px auto;
+}
+.middle{
+    margin-bottom: 22px;
+    font-size: unset;
+}
+.down{
+    font-size: 19px;
+}
+.down .col-md .menu{
+    text-decoration: none;
+    color: #FEFAF5;
+}
+.down .col-md .menu a:link{
+    text-decoration: none;
+    color: #FEFAF5;
+}
+
+/*body*/
+.launch{
+    margin:15px;
+}
+/*轮播图*/
+.Carousel{
+    margin-bottom: 5px;
+}
+.massage{
+    text-align: left;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.apt h4{
+    display: inline-block;
+    /**display: inline;
+    *zoom: 1;*/
+    font-size: 24px;
+    color: #000;
+    line-height: 26px;
+    margin-right: 20px;
+    font-weight: 400;
+}
+.apt .entit {
+    border-bottom: 1px solid #b2b2b2;
+    height: 11px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+.apt .entit span {
+    color: #b2b2b2;
+    font-size: 12px;
+    padding-right: 5px;
+    line-height: 11px;
+    background: #fff;
+    display: inline-block;
+    /**display: inline;
+    *zoom: 1;*/
+    position: absolute;
+    bottom: -1px;
+}
+.ulist li {
+    padding: 0 70px 0 30px;
+    position: relative;
+    line-height: 38px;
+    height: 38px;
+    overflow: hidden;
+}
+.ulist li .num {
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    top: 10px;
+    font-size: 16px;
+}
+.menu{
+    text-decoration: none;
+
+}
+
+.ulist li a {
+    color: #333;
+    font-size: 16px;
+    height: 38px;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+}
+.apc a {
+    text-decoration: none;
+}
+
+/*a:visited {
+    text-decoration: none;
+}
+a:link {
+    text-decoration: none;
+    color: #585858;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}*/
+.ulist li .tm {
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    color: #999;
+    top: 0;
+    width: 70px;
+    line-height: 38px;
+    text-align: right;
+}
+.ulist li .top3 {
+    background: #dd5d69;
+    color: #fff;
+}
+#Footer {
+    border-top: 1px solid #ebebeb;
+    padding: 15px 0;
+    background: #f0f0f0;
+    position: relative;
+    margin-top: 20px;
+    /*transition: transform .5s ease 0s;*/
+    -webkit-transition: -webkit-transform .5s ease 0s;
+}
+#Footer p {
+    padding: 5px 0;
+    text-align: center;
+}
+#Footer .top-nav {
+    color: #d6d6d6;
+    font-size: 12px;
+}
+#Footer .site-info {
+    font-size: 12px;
+    color: #999;
+}
+#Footer .site-info span {
+    padding: 0 3px;
+    color: #369;
+}
+#Footer a {
+    text-decoration: none;
+}
+
+/*招领列表*/
+#banners:hover {
+    background: #f8f8f8;
+    border-color: #f8f8f8;
+}
+#banners:hover .feed_tegao  h4 a:hover{
+    color: #008cdd;
+}
+#banners:hover .feed_tegao  h4 a:link{
+    color: #008cdd;
+}
+#banners:hover .feed_tegao  h4 a:visited{
+    color: #008cdd;
+}
+.feed_tegao {
+    position: relative;
+    height: 162px;
+    border-bottom: 1px solid #ebebeb;
+    padding: 15px 15px 20px 195px;
+}
+.feed_tegao h4 {
+    padding-bottom: 6px;
+}
+.feed_tegao h4 a {
+    text-decoration: none;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: #000;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+}
+
+h4, h5, h6 {
+    font-size: 100%;
+}
+.feed_tegao .picture {
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    width: 160px;
+    height: 120px;
+}
+.feed_tegao .picture a {
+    display: block;
+    height: 100%;
+}
+.feed_tegao .picture img {
+    width: 100%;
+    height: 100%;
+}
+a img {
+    border: 0;
+}
+img {
+    border: none;
+}
+.feed_tegao .summary {
+    font-size: 14px;
+    color: #777;
+    height: 52px;
+}

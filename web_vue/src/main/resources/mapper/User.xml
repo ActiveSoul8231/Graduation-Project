@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.website.web_vue.mapper.UserMapper">
+    <select id="getByUId" parameterType="integer" resultType="com.website.web_vue.pojo.User">
+        select u_id uId,u_name uName,u_telephone uTelephone,u_email uEmail,u_password uPassword,u_level uLevel,u_recovery_status uRecoveryStatus from tb_user where u_id = #{uId}
+    </select>
+
+    <select id="findUserByName" parameterType="string" resultType="com.website.web_vue.pojo.User">
+        SELECT u_id uId,u_name uName,u_telephone uTelephone,u_email uEmail,u_password uPassword,u_level uLevel,u_recovery_status uRecoveryStatus FROM tb_user where u_telephone= #{uName} or u_email=#{uName} or u_name= #{uName}
+    </select>
+
+    <select id="getNet" resultType="com.website.web_vue.pojo.User">
+        select u_id uId,u_name uName,u_telephone uTelephone,u_email uEmail,u_password uPassword,u_level uLevel,u_recovery_status uRecoveryStatus from tb_user where u_name=#{net} or u_email=#{net} or u_telephone=#{net}
+    </select>
+
+    <insert id="registerUser" parameterType="com.website.web_vue.pojo.User" >
+        insert into tb_user(u_name,u_telephone,u_email,u_password) VALUES(#{uName},#{uTelephone},#{uEmail},#{uPassword})
+    </insert>
+</mapper>
