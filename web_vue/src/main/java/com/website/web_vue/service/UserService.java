@@ -17,4 +17,6 @@ public interface UserService {
     String getUserTel(String uTelephone);
 
     ModelAndView registerUser(User user);
+
+    void updateName(User shiroUser);
 }

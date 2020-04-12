@@ -13,4 +13,6 @@ public interface UserMapper {
     User getNet(String net);
 
     void registerUser(User user);
+
+    void updateName(User shiroUser);
 }

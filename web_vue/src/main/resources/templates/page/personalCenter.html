@@ -108,7 +108,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="changeUserName" action="/userUpdateName" method="POST" enctype="multipart/form-data">
+                        <form id="changeUserName" action="/userUpdateMsg" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name = "status" value=1>
                             <label for="newName">填写新的用户名（注意格式）：</label><br>
                             <input id="newName" name="uName" :placeholder="personalList.userMs.uName"><br>
                         </form>

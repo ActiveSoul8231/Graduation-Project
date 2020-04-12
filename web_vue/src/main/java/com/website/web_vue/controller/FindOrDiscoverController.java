@@ -41,9 +41,8 @@ public class FindOrDiscoverController {
             HashMap<String, Object> stringObjectHashMap = new HashMap<>();
             stringObjectHashMap.put("D",getMTypeZero);
             stringObjectHashMap.put("F",getMTypeOne);
-            System.out.println("失物招领的信息条数："+getMTypeZero.size());
-            System.out.println("寻物启事的信息条数："+getMTypeOne.size());
-            System.out.println("//////////////////////////////////////////////////////////////");
+            System.out.println("+------------+");
+            System.out.println("|首页加载成功|");
             result.setData(stringObjectHashMap);
             result.setState("200");
             result.setMsg("success");

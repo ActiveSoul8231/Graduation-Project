@@ -1,3 +1,6 @@
+var usernametag = false;
+var usernamemsg = "请输入新名字";
+
 $(function(){
     $("a.disableHref").click(function(event){
         return false;
@@ -109,3 +112,71 @@ var vue = new Vue({
         }
     }
 })
+
+/**
+ * 提交模态框修改名字时进行（非空，正则，非重复）验证
+ */
+function toSaveChanges() {
+    debugger
+    var feikong = $("#newName").val();
+    if(feikong !=null && feikong !=""){
+        getUserFlag();
+        if (usernametag==true){
+            getUserFlag1();
+            debugger;
+            // var feichongfu = document.getElementById('flag1').innerHTML;
+            if(!usernametag){
+                layer.msg(usernamemsg);
+                return false;
+            }else {
+                $("#changeUserName").submit();
+            }
+        } else {
+            layer.msg(usernamemsg)
+            return false;
+        }
+    }else {
+        layer.msg("用户名不能为空");
+    }
+}
+
+function getUserFlag1() {
+    //将  id="uName"  的值放入 ss 中
+    var ss = $("#newName").val();
+    //设置 id="flag1" 的标签内容初始化为空
+    $("#flag1").text("");
+    $.ajax({
+        //请求类型为：POST
+        type:"POST",
+        // 把请求发送到user  中的  getUserName() 方法
+        url:"/getUserName",
+        //映射或字符串值。规定连同请求发送到服务器的数据
+        data:{"uName":ss},
+        //规定预期的服务器响应的数据类型，默认执行智能判断（xml、json、script 或 html）
+        dataType:"json",
+        //请求成功时执行的回调函数。
+        async:false,
+        success:function (obj4) {
+            if (obj4.message!= ""){
+                usernametag = false;
+                usernamemsg = "用户名重复！重新想一个";
+            }else {
+                usernametag = true;
+                // $("#flag1").text(obj4.message)
+            }
+        }
+    })
+}
+
+function getUserFlag() {
+    var newName = $("#newName").val();
+    var name = /^([\u4e00-\u9fa5]{2,4})|([A-Za-z0-9_]{4,16})|([a-zA-Z0-9_\u4e00-\u9fa5]{3,16})$/;
+    if (!name.test(newName)) {
+        usernametag = false;
+        usernamemsg = "名字只能是中文或者数字或者英文";
+        // $("#flag1").text("🗿名字只能是中文或者数字或者英文");
+    }else {
+        usernametag = true;
+        // $("#flag1").text("");
+    }
+}

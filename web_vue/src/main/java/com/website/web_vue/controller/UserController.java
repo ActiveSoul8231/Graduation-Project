@@ -1,5 +1,6 @@
 package com.website.web_vue.controller;
 
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import com.website.web_vue.pojo.User;
 import com.website.web_vue.service.UserService;
 import com.website.web_vue.utils.MD5Util;
@@ -120,5 +121,20 @@ public class UserController {
          return userService.registerUser(user);
     }
 
+//      --------------------------------------------------------------------------用户修改个人信息
+    @RequestMapping("/userUpdateMsg")
+    public ModelAndView userUpdateName(User user,Integer status){
+//        获取用户信息
+        User shiroUser = (User) SecurityUtils.getSubject().getPrincipal();
+        /*状态为1修改用户名*/
+        if (status == 1){
+            shiroUser.setuName(user.getuName());
+            userService.updateName(shiroUser);
+        }else if (status ==2){
 
+        }else {
+
+        }
+        return new ModelAndView("redirect:/userDoLogout.html");
+    }
 }

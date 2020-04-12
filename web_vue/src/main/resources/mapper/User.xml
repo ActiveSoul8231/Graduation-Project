@@ -19,4 +19,8 @@
     <insert id="registerUser" parameterType="com.website.web_vue.pojo.User" >
         insert into tb_user(u_name,u_telephone,u_email,u_password) VALUES(#{uName},#{uTelephone},#{uEmail},#{uPassword})
     </insert>
+
+    <update id="updateName" parameterType="com.website.web_vue.pojo.User">
+        update tb_user set u_name = #{uName} where u_id = #{uId};
+    </update>
 </mapper>

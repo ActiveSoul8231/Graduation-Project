@@ -83,4 +83,9 @@ public class UserServiceImpl implements UserService {
         System.out.println("恭喜用户："+user.getuName()+"--注册成功");
         return new ModelAndView("redirect:/tologin.html");
     }
+
+    @Override
+    public void updateName(User shiroUser) {
+        userMapper.updateName(shiroUser);
+    }
 }
