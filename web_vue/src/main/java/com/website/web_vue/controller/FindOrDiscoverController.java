@@ -165,7 +165,7 @@ public class FindOrDiscoverController {
         }
         return result;
     }
-    @RequestMapping("toDel")
+    @RequestMapping("/todel")
     public ResultUtil toDel(Integer mId){
         ResultUtil result = new ResultUtil("500");
         try {
@@ -180,7 +180,7 @@ public class FindOrDiscoverController {
                 result.setMsg("success");
             }else if (user.getuLevel().equals("1")||user.getuLevel().equals("0")){
 //                管理员删除用户信息
-//                ***************************************************************************************
+//                ********************************************* ******************************************
 //                findOrDiscoverService.adminDelMs(mId);
                 result.setState("200");
                 result.setMsg("success");

@@ -66,13 +66,13 @@ var vue = new Vue({
                     var url = "/toPost?mId="+pMId;
                     axios.post(url).then(function () {
 
-                        console.log("用户修改完成")
+                        console.log("信息状态修改完成")
                         vue.findListPersonal(start);
                     })
 
                 }, function(){
                 });
-            }else {
+            }else if (status ==2) {
                 layer.confirm('需要公开展示消息？确定公开', {
                     btn: ['确定','取消'] //按钮
                 }, function(){
@@ -82,8 +82,26 @@ var vue = new Vue({
                     var url = "/toPost?mId="+pMId;
                     axios.post(url).then(function () {
 
-                        console.log("用户修改完成")
+                        console.log("信息状态修改完成")
                         vue.findListPersonal(start);
+                    })
+
+                }, function(){
+                });
+            }else {
+                layer.confirm('确定删除消息吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    layer.msg('确定', {icon: 1});
+
+                    var pMId = mId;
+                    var url = "/todel?mId="+pMId;
+                    axios.post(url).then(function () {
+
+                        console.log("信息删除完成")
+                        vue.findListPersonal(start);
+                        layer.msg("删除成功")
+
                     })
 
                 }, function(){

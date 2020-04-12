@@ -242,7 +242,7 @@
                         </h5>
                         <p class="picture"><a :href="'toDetails.html?mId='+LaunchMs.mId" target="_blank"><img :src="LaunchMs.mImage" :alt="LaunchMs.mAreaId+':'+LaunchMs.mTitle"></a></p>
 <!--                        <button type="button" class="btn btn-outline-danger del" data-toggle="tooltip" data-placement="top" title="删除后的信息将在个人中心消失，如需恢复请联系管理员" onclick="todel(/*{{LaunchMs.mId}}*/)">删除消息</button>-->
-                        <button type="button" class="btn btn-outline-danger del" data-toggle="tooltip" data-placement="top" title="删除后的信息将在个人中心消失，如需恢复请联系管理员" @click="todel(LaunchMs.mId,pagination.pageNum)">删除消息</button>
+                        <button type="button" class="btn btn-outline-danger del" data-toggle="tooltip" data-placement="top" title="删除后的信息将在个人中心消失，如需恢复请联系管理员" @click="toPost(LaunchMs.mId,pagination.pageNum,3)">删除消息</button>
                         <button v-if="LaunchMs.mPostStatus === '1'" type="button" class="btn btn-warning del-1" title="如果您的这个物品已寻回，请点我"  @click="toPost(LaunchMs.mId,pagination.pageNum,1)">已经找到</button>
                         <button v-if="LaunchMs.mPostStatus === '0'" type="button" class="btn btn-success del-1"   title="需要公开展示消息？点我公开" @click="toPost(LaunchMs.mId,pagination.pageNum,0)">重新发布</button>
                     </div>
@@ -274,13 +274,4 @@
 
 <script src="/js/vue.js"></script>
 <script src="/js/personalCenter.js"></script>
-<script type="text/javascript">
-    // $(function () {
-    //     setTimeout(function () {
-    //         $('[data-toggle="tooltip"]').tooltip();
-    //     },500)
-    //    // $('[data-toggle="tooltip"]').tooltip();
-    //     // $('#example').tooltip(options);
-    // });
-</script>
 </html>
