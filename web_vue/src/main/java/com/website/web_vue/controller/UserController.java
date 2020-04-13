@@ -126,6 +126,28 @@ public class UserController {
         stringObjectHashMap.put("mailCode",code);
         return stringObjectHashMap;
     }
+    @RequestMapping("/getsendMailUpdateNew")
+    public Map<String,Object> getsendMailUpdateNew() throws Exception {
+        User shiroUser = (User) SecurityUtils.getSubject().getPrincipal();
+        String uEmail = shiroUser.getuEmail();
+        String code = VerificationCodeUtil.get6Nonce_str();
+        SendEmail.sendMail(uEmail,code,shiroUser.getuName());
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        stringObjectHashMap.put("mailCode",code);
+        return stringObjectHashMap;
+    }
+    @RequestMapping("/passwordCompare")
+    public Map<String,Object> passwordCompare(String oldPassword){
+        User shiroUser = (User) SecurityUtils.getSubject().getPrincipal();
+        String oldPwd = MD5Util.MD5(oldPassword).toLowerCase();
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        if (oldPwd.equals(shiroUser.getuPassword())){
+            stringObjectHashMap.put("pwdMsg",1);
+        }else {
+            stringObjectHashMap.put("pwdMsg",0);
+        }
+        return stringObjectHashMap;
+    }
 
 //    ---------------------------------------------------------------------------普通用户注册
     @RequestMapping("/userRegister")
@@ -142,11 +164,15 @@ public class UserController {
         if (status == 1){
             shiroUser.setuName(user.getuName());
             userService.updateName(shiroUser);
+            System.out.println("用户："+shiroUser.getuName()+"--修改用户名成功");
         }else if (status ==2){
             shiroUser.setuEmail(user.getuEmail());
             userService.updateEmail(shiroUser);
+            System.out.println("用户："+shiroUser.getuName()+"--修改邮箱成功");
         }else {
-
+            shiroUser.setuPassword(MD5Util.MD5(user.getuPassword()).toLowerCase());
+            userService.updatePassword(shiroUser);
+            System.out.println("用户："+shiroUser.getuName()+"--修改密码成功");
         }
         return new ModelAndView("redirect:/userDoLogout.html");
     }

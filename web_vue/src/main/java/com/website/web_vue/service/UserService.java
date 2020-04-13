@@ -21,4 +21,6 @@ public interface UserService {
     void updateName(User shiroUser);
 
     void updateEmail(User shiroUser);
+
+    void updatePassword(User shiroUser);
 }

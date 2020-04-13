@@ -17,4 +17,6 @@ public interface UserMapper {
     void updateName(User shiroUser);
 
     void updateEmail(User shiroUser);
+
+    void updatePassword(User shiroUser);
 }

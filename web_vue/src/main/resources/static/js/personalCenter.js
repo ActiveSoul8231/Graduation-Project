@@ -1,5 +1,5 @@
-var usernametag = false;       useremailtag = false;
-var usernamemsg = "请输入新名字";   useremailmsg = "请输入新邮箱";
+var usernametag = false;       useremailtag = false;                    userpasswordtag = false;
+var usernamemsg = "请输入新名字";   useremailmsg = "请输入新邮箱";      userpasswordmsg = "请输入密码";
 
 $(function(){
     $("a.disableHref").click(function(event){
@@ -296,5 +296,83 @@ function getUserFlag() {
         }else {
             $("#changeUserEmail").submit();
         }
+    }
 
+    /*
+    *        旧密码非空，新密码非空，旧密码等于正确的密码，新旧密码不能相等，新密码正则，验证码输入正确，提交
+    * */
+    function toSaveChangePassword() {
+        debugger
+        var oldPwd = $("#oldPassword").val();
+        var newPwd = $("#newPassword").val();
+        var sccPwd = $("#successPassword").val();
+        if (oldPwd !=""&&oldPwd!=null){
+            if(newPwd!=""&&newPwd !=null){
+                pass();
+                if (userpasswordtag == true){
+                    if (newPwd!=oldPwd) {
+                        var pwd = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+                        if (!pwd.test(newPwd)){
+                            layer.msg("新密码至少包含 数字和英文，长度6-16位！请重新输入")
+                        }else {
+                            var mailCode=$("#mailCode2").val();
+                            var mailCodeReturn=$("#mailCodeReturn2").val();
+                            if (mailCode != mailCodeReturn){
+                                layer.msg("验证码错误")
+                            }else {
+                                $("#changeUserPassword").submit();
+                            }
+                        }
+                    }else {
+                        layer.msg("新密码不能与旧密码相同哦！请重新输入")
+                    }
+                }else {
+                    layer.msg("您的原始密码输入错误！请重新输入")
+                }
+            }else {
+                layer.msg("请输入新密码")
+            }
+        } else {
+            layer.msg("请输入原始密码！")
+        }
+    }
+
+    function pass() {
+        //async若要将其设置为false，则所有的请求均为同步请求，在没有返回值之前，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行。
+        var oldPwd = $("#oldPassword").val();
+        //后台对比用户输入原始密码正确
+        $.ajax({
+            type:"POST",
+            url:"/passwordCompare",
+            data:{"oldPassword":oldPwd},
+            dataType:"json",
+            async:false,
+            success:function (obj88) {
+                if (obj88.pwdMsg == 1 ){
+                    userpasswordtag = true;
+                }else {
+                    userpasswordtag = false;
+                    userpasswordmsg = "原始密码错误"
+                }
+            }
+        })
+    }
+
+    function sendEmail2(that) {
+        //清空验证码
+        $("#mailCode2").empty();
+        //将 id=“userEmail”  的值放入 val
+        // var val = $("#userEmail").val();
+        Timing(that);
+        $.ajax({
+            type:"POST",
+            url:"/getsendMailUpdateNew",
+            //将邮箱地址放到键为 “uEmail” 中，，传到 sendMail() 方法
+            data:{},
+            dataType:"json",
+            success:function (obj1) {
+                layer.msg("验证码已经发送");
+                $("#mailCode2").append("<input type='hidden' id='mailCodeReturn2' value='"+obj1.mailCode+"'>");
+            }
+        })
     }

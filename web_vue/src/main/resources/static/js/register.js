@@ -89,7 +89,6 @@ function getUserFlag() {
             }else{
                 nametag=true;
             }
-
             $("#flag1").text(obj4.message)
         }
     })

@@ -93,4 +93,9 @@ public class UserServiceImpl implements UserService {
     public void updateEmail(User shiroUser) {
         userMapper.updateEmail(shiroUser);
     }
+
+    @Override
+    public void updatePassword(User shiroUser) {
+        userMapper.updatePassword(shiroUser);
+    }
 }
