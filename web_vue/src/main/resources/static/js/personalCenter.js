@@ -59,6 +59,7 @@ var vue = new Vue({
                 vue.findListPersonal(start);
         },
         toPost: function (mId,start,status) {
+            debugger
             if (status ==1){
                 layer.confirm('如果您的这个物品已寻回，请确定', {
                     btn: ['确定','取消'] //按钮
@@ -72,7 +73,7 @@ var vue = new Vue({
                     })
                 }, function(){
                 });
-            }else if (status ==2) {
+            }else if (status ==0) {
                 layer.confirm('需要公开展示消息？确定公开', {
                     btn: ['确定','取消'] //按钮
                 }, function(){

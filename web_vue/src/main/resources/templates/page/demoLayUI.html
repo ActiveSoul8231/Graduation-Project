@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
     <script src="/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="layui/layui.all.js"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>-->
     <script src="/js/popper.min.js"></script>
     <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
@@ -19,11 +21,35 @@
     </script>
 </head>
 <body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>按钮的轻量级弹窗</legend>
+</fieldset>
 <button type="button" class="btn btn-warning del-1" data-toggle="tooltip" data-placement="top" title="Tooltip on top111">
     Tooltip on top111111
 </button>
 <button type="button" class="btn btn-warning del-1" data-toggle="tooltip" data-placement="top" title="Tooltip on top222">
     Tooltip on top111111
 </button>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>文件上传测试功能</legend>
+</fieldset>
+
+<h3>1、单文件上传</h3>
+<form method="POST" action="/upload1" enctype="multipart/form-data">
+    上传人：<input type="text" name="userName"><br>
+    文件一：<input type="file" name="file"><br>
+    <input type="submit" value="Submit">
+</form>
+<hr>
+<h3>2、多文件上传</h3>
+<form method="POST" action="/upload2" enctype="multipart/form-data">
+    上传人：<input type="text" name="userName"><br>
+    文件一：<input type="file" name="file"><br>
+    文件二：<input type="file" name="file"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+
 </body>
 </html>

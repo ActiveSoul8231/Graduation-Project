@@ -107,15 +107,15 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="changeUserName" action="/userUpdateMsg" method="POST" enctype="multipart/form-data">
+                        <form id="changeUserName" action="/userUpdateMsg" method="POST" enctype="multipart/form-data" style="margin: 15px auto 15px auto;padding: 0px 15%;">
                             <input type="hidden" name = "status" value=1>
                             <label for="newName">填写新的用户名（注意格式）：</label><br>
-                            <input id="newName" name="uName" :placeholder="personalList.userMs.uName"><br>
+                            <input class="form-control"  id="newName" name="uName" :placeholder="personalList.userMs.uName"><br>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="toSaveChanges()">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="toSaveChanges()">提交更改</button>
                     </div>
                 </div>
             </div>

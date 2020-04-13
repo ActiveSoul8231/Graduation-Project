@@ -20,7 +20,8 @@ import java.util.UUID;
  */
 public class UploadUtil {
 
-    private static String UPLOAD_FOLDER = "F:\\毕业设计\\test\\package\\web_vue\\src\\main\\resources\\static\\picture";
+    private static String UPLOAD_FOLDER = "D:\\workSpace\\Github Local Path\\GitHub\\Graduation-Project\\web_vue\\src\\main\\resources\\public\\picture";
+//    private static String UPLOAD_FOLDER = "F:\\boot-file\\picture";
     public static String fileUpload(MultipartFile srcFile) {
         try {
             File destFile = new File(UPLOAD_FOLDER);

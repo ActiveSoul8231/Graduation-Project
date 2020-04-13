@@ -76,7 +76,7 @@
                     <article>
                         <h1 th:text="${msgDetails.mTitle}"></h1>
                         <div style="line-height: 25px; padding: 5px;color:#c72c3b;font-size:12px;">公告：为防止用户信息被诈骗份子利用，即日起查看手机号须登录，院校失物招领网对恶意骚扰说不！</div>
-                        <blockquote class="layui-elem-quote layui-quote-nm">栏目：<a href="">寻物启事</a><span lay-separator=""> </span>
+                        <blockquote class="layui-elem-quote layui-quote-nm">栏目：<a href="/toListF.html">寻物启事</a><span lay-separator=""> </span>
                             发布时间：[[${msgDetails.mLaunchDate}]]<span lay-separator=""> </span>
                         </blockquote>
                         <fieldset class="layui-elem-field site-demo-button" style="margin-top: 30px;">
@@ -145,25 +145,27 @@
                     <article>
                         <h1 th:text="${msgDetails.mTitle}"></h1>
                         <div style="line-height: 25px; padding: 5px;color:#c72c3b;font-size:12px;">公告：为防止用户信息被诈骗份子利用，即日起查看手机号须登录，院校失物招领网对恶意骚扰说不！</div>
-                        <blockquote class="layui-elem-quote layui-quote-nm">栏目：<a href="">失物招领</a><span lay-separator=""> </span>
+                        <blockquote class="layui-elem-quote layui-quote-nm">栏目：<a href="toListD.html">失物招领</a><span lay-separator=""> </span>
                             发布时间：[[${msgDetails.mLaunchDate}]]<span lay-separator=""> </span></blockquote>
                         <fieldset class="layui-elem-field site-demo-button" style="margin-top: 30px;">
                             <legend>信息详情</legend>
 
                             <div class="layui-col-md12">
                                 <div class="layui-card">
-                                    <div class="layui-card-header my1">
+                                    <div class="layui-card-header my1" th:if="${sessionTest.islogin == 0}">
                                         <svg class="bi bi-phone" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M13 3H7a1 1 0 00-1 1v11a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM7 2a2 2 0 00-2 2v11a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7z" clip-rule="evenodd"></path>
                                             <path fill-rule="evenodd" d="M10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
                                         </svg>
                                         联系电话：
-<!--                                        <c:if test="${userSession.uId == null}">-->
-<!--                                            <a href="${pageContext.request.contextPath}/user/toLogin">[请登录后查看联系方式]</a>-->
-<!--                                        </c:if>-->
-<!--                                        <c:if test="${userSession.uId != null}">-->
-<!--                                            ${userDetails.uTelephone}-->
-<!--                                        </c:if>-->
+                                        <a href="/tologin.html" >[请登录后查看联系方式]</a>
+                                    </div>
+                                    <div class="layui-card-header my1" th:if="${sessionTest.islogin == 1}">
+                                        <svg class="bi bi-phone" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M13 3H7a1 1 0 00-1 1v11a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM7 2a2 2 0 00-2 2v11a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7z" clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd" d="M10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        联系电话：[[${userDetails.uTelephone}]]
                                     </div>
                                     <div class="layui-card-header">
                                         <svg class="bi bi-geo" color="#c72c3b" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
