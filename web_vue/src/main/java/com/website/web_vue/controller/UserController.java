@@ -1,6 +1,5 @@
 package com.website.web_vue.controller;
 
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import com.website.web_vue.pojo.User;
 import com.website.web_vue.service.UserService;
 import com.website.web_vue.utils.MD5Util;
@@ -16,11 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,6 +77,7 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         subject.getSession().removeAttribute("user");
+        System.out.println("用户退出登录");
         return mv;
     }
 /*------------------------------------------------------------------------ajax验证注册信息唯一*/
