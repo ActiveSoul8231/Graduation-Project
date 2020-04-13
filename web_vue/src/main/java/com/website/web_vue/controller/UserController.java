@@ -5,6 +5,7 @@ import com.website.web_vue.pojo.User;
 import com.website.web_vue.service.UserService;
 import com.website.web_vue.utils.MD5Util;
 import com.website.web_vue.utils.MailSender;
+import com.website.web_vue.utils.SendEmail;
 import com.website.web_vue.utils.VerificationCodeUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -114,6 +115,17 @@ public class UserController {
         System.out.println(nonce_str+"**********验证码");
         return stringObjectHashMap;
     }
+    @RequestMapping("/getsendMailUpdate")
+    public Map<String,Object> getsendMailUpdate(String uEmail) throws Exception {
+        User shiroUser = (User) SecurityUtils.getSubject().getPrincipal();
+        String code = VerificationCodeUtil.get6Nonce_str();
+//        发邮件（用户邮箱，随机数）
+        SendEmail.sendMail(uEmail,code,shiroUser.getuName());
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+//        将产生的随机数塞进  id='mailCodeReturn'  的表单中  键 为 “mailCode”
+        stringObjectHashMap.put("mailCode",code);
+        return stringObjectHashMap;
+    }
 
 //    ---------------------------------------------------------------------------普通用户注册
     @RequestMapping("/userRegister")
@@ -131,7 +143,8 @@ public class UserController {
             shiroUser.setuName(user.getuName());
             userService.updateName(shiroUser);
         }else if (status ==2){
-
+            shiroUser.setuEmail(user.getuEmail());
+            userService.updateEmail(shiroUser);
         }else {
 
         }

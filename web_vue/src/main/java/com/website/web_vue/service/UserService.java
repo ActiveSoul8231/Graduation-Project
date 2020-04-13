@@ -19,4 +19,6 @@ public interface UserService {
     ModelAndView registerUser(User user);
 
     void updateName(User shiroUser);
+
+    void updateEmail(User shiroUser);
 }

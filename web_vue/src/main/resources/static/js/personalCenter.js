@@ -1,5 +1,5 @@
-var usernametag = false;
-var usernamemsg = "请输入新名字";
+var usernametag = false;       useremailtag = false;
+var usernamemsg = "请输入新名字";   useremailmsg = "请输入新邮箱";
 
 $(function(){
     $("a.disableHref").click(function(event){
@@ -115,6 +115,12 @@ var vue = new Vue({
 
 /**
  * 提交模态框修改名字时进行（非空，正则，非重复）验证
+ *
+ * function toSaveChanges()
+ *
+ * function getUserFlag1()
+ *
+ * function getUserFlag()
  */
 function toSaveChanges() {
     debugger
@@ -180,3 +186,115 @@ function getUserFlag() {
         // $("#flag1").text("");
     }
 }
+
+/*
+*       普通用户修改邮箱，验证（非空，正则，邮箱唯一，验证码）
+* */
+
+    var orgcountdown=60;
+
+    function Timing(that) {
+        if (orgcountdown == 0) {
+            that.removeAttribute("disabled");
+            $("#getverification2").css("background","#d9e6fa");
+            that.value="重新获取验证码";
+            orgcountdown = 60;
+            return;
+        } else {
+            that.setAttribute("disabled", true);
+            $("#getverification2").css("background","#AAAAAA");
+            that.value="重新发送(" + orgcountdown + ")";
+            orgcountdown--;
+        }
+        setTimeout(function() {Timing(that) },1000)
+    }
+
+
+    //接收邮箱验证码转成的 json 文件
+    function sendEmail(that) {
+        debugger;
+        var feikongEmail = $("#newEmail").val();
+        if(feikongEmail!=""&&feikongEmail!=null){
+            getUserEmailFlag1();
+            if (useremailtag==true){
+                getUserEmailFlag();
+                if(!useremailtag){
+                    layer.msg(useremailmsg);
+                }else {
+                    //清空验证码
+                    $("#mailCode").empty();
+                    //将 id=“email”  的值放入 val
+                    var val = $("#newEmail").val();
+                    Timing(that);
+                    $.ajax({
+                        type:"POST",
+                        url:"/getsendMailUpdate",
+                        //将邮箱地址放到键为 “uEmail” 中，，传到 sendMail() 方法
+                        data:{"uEmail":val},
+                        dataType:"json",
+                        success:function (obj1) {
+                            $("#mailCode").append("<input type='hidden' id='mailCodeReturn' value='"+obj1.mailCode+"'>");
+                            layer.msg("验证码已经发送");
+                        }
+                    })
+                }
+            } else {
+                layer.msg(useremailmsg);
+            }
+        }else {
+            layer.msg("邮箱不能为空");
+        }
+    }
+
+    function getUserEmailFlag1() {
+        var val = $("#newEmail").val();
+        var emailtest=/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        if (!emailtest.test(val)){
+            useremailtag = false;
+            useremailmsg = "邮箱格式错误";
+        }else {
+            useremailtag = true;
+        }
+    }
+
+    function getUserEmailFlag() {
+        var val = $("#newEmail").val();
+        $.ajax({
+            type:"POST",
+            url:"/getuserEmailFlag",
+            data:{"userMailFlag":val},
+            dataType:"json",
+            async:false,
+            success:function (obj3) {
+                if (obj3.mailFlag != ""){
+                    useremailtag = false;
+                    useremailmsg = "该邮箱已经注册过"
+                }else {
+                    useremailtag = true;
+                }
+            }
+        })
+    }
+
+    // 判断邮箱验证码是否相同
+    function validataMailCode() {
+        var mailCode=$("#mailCode").val();
+        var mailCodeReturn=$("#mailCodeReturn").val();
+        if (mailCode != mailCodeReturn){
+            useremailtag = false;
+            useremailmsg = "验证码错误";
+        }else {
+            useremailtag = true;
+        }
+    }
+
+    function toSaveChangeEmail() {
+        validataMailCode();
+        debugger;
+        if(!useremailtag){
+            layer.msg(useremailmsg);
+        }else {
+            $("#changeUserEmail").submit();
+        }
+
+    }

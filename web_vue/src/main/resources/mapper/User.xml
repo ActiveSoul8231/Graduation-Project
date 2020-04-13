@@ -23,4 +23,8 @@
     <update id="updateName" parameterType="com.website.web_vue.pojo.User">
         update tb_user set u_name = #{uName} where u_id = #{uId};
     </update>
+
+    <update id="updateEmail" parameterType="com.website.web_vue.pojo.User">
+        update tb_user set u_email = #{uEmail} where u_id = #{uId};
+    </update>
 </mapper>
