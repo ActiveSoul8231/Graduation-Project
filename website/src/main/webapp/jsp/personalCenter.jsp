@@ -428,8 +428,8 @@
                          </form>
                      </div>
                      <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         <button type="button" class="btn btn-primary" onclick="toSaveChanges()">Save changes</button>
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                         <button type="button" class="btn btn-primary" onclick="toSaveChanges()">提交更改</button>
                      </div>
                  </div>
              </div>

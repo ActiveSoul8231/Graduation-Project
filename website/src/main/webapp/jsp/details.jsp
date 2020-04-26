@@ -441,7 +441,12 @@
 
                 </div>
                 <div class="col-md">
-                    <a class="menu" href="${pageContext.request.contextPath}/m/toPersonalCenter?uName=${userSession.uName}">个人中心</a>
+                    <c:if test="${userSession.uName==null}">
+                        <a <%--onclick="toLogin()" --%>class="menu" href="${pageContext.request.contextPath}/user/toLogin" >个人中心</a>
+                    </c:if>
+                    <c:if test="${userSession.uName!=null}">
+                        <a <%--onclick="toPersonalCenter('${userSession.uName}')"--%> class="menu" href="${pageContext.request.contextPath}/m/toPersonalCenter?uName=${userSession.uName}">个人中心</a>
+                    </c:if>
                 </div>
             </div>
         </div>

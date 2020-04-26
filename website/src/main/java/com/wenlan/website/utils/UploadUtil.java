@@ -24,7 +24,8 @@ import java.util.UUID;
  */
 public class UploadUtil {
 
-    private static String UPLOAD_FOLDER = "D:\\workSpace\\Github Local Path\\GitHub\\website\\src\\main\\webapp\\template\\picture";
+//    private static String UPLOAD_FOLDER = "D:\\workSpace\\Github Local Path\\GitHub\\website\\src\\main\\webapp\\template\\picture";
+    private static String UPLOAD_FOLDER = "D:\\workSpace\\Github Local Path\\GitHub\\Graduation-Project\\website\\src\\main\\webapp\\template\\picture";
     public static String fileUpload(MultipartFile srcFile) {
         try {
             File destFile = new File(UPLOAD_FOLDER);

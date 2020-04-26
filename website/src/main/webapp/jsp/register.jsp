@@ -426,27 +426,7 @@
     <footer class="footer">
 
         <div class="copyright">
-            ©
-            <%--<script>--%>
-                <%--document.write(new Date().getFullYear())--%>
-                <%--var phone    = document.getElementById('phone');--%>
-                <%--var password = document.getElementById('password');--%>
-
-                <%--if(phone.validity.valueMissing)--%>
-                <%--{--%>
-                    <%--alert("账号不能为空");--%>
-                    <%--return;--%>
-                <%--} else if(phone.validity.patternMismatch)--%>
-                <%--{--%>
-                    <%--alert("账号输入有误");--%>
-                    <%--return;--%>
-                <%--}--%>
-                <%--if(password.validity.valueMissing)--%>
-                <%--{--%>
-                    <%--alert("密码不能为空");--%>
-                    <%--return;--%>
-                <%--}--%>
-            <%--</script>, Designed by  <a href="#" target="_blank" title="">院校失物招领</a>--%>
+            ©, Designed by  <a href="#" target="_blank" title="">院校失物招领</a>
         </div>
     </footer>
 </div>
