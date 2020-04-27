@@ -86,7 +86,7 @@
                 <div class="ibox-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <button type="button" class="btn btn-outline-primary" onclick="toAddArticle()">添加地点</button>
+                            <button type="button" class="btn btn-outline-primary" onclick="toAddArticle()">添加物品</button>
                             <%--查询--%>
                             <%--<form  method="GET" action="${pageContext.request.contextPath}/m/getAllMsg" role="form" class="form-inline">--%>
                                 <%--<input type="text" placeholder="标题" value="${selectByValue}" name="selectByValue">--%>
