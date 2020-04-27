@@ -18,7 +18,7 @@ import java.util.Properties;
  * 发送邮件
  * @类 名 : SendEmail
  * @功能描述 : TODO
- * @修改备注 : 汤伟：2018-10-25 静态数据修改为配置文件，添加发送端口，添加发件人昵称
+ * @修改备注 : ：2018-10-25 静态数据修改为配置文件，添加发送端口，添加发件人昵称
  */
 public class SendEmail {
 	
@@ -63,7 +63,7 @@ public class SendEmail {
 		String SMTP= "smtp.163.com";
         String port= "25";
         String EMAIL= "wenlan8231@163.com";
-        String PWD= "WGnqHXNOF3fNVzx7";
+        String PWD= "VRREBRNKDYYYUJCX";
         String title= "验证码";
         HOST=SMTP;
         PORT=Integer.parseInt(port);

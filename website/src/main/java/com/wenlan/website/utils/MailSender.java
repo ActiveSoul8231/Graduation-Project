@@ -18,7 +18,7 @@ public class MailSender {
     //邮箱发送人地址
     private static final String EMAILPATH = "wenlan8231@163.com";
     //邮箱发送人密码（授权码）
-    private static final String PASSWORD = "WGnqHXNOF3fNVzx7";
+    private static final String PASSWORD = "VRREBRNKDYYYUJCX";
 
     /*
      * @author changguiying
@@ -64,7 +64,7 @@ public class MailSender {
     }
 
     public static void main(String[] args) throws Exception {
-        sendMailFunction("1183275965@qq.com", VerificationCodeUtil.getNonce_str());
+        sendMailFunction("1846038231@qq.com", VerificationCodeUtil.getNonce_str());
     }
 
     public static MimeMessage getMimeMessage(Session session, String recipientAddress, String nonce_str) throws Exception{

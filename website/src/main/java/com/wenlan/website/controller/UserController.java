@@ -146,12 +146,13 @@ public class UserController {
     }
     @RequestMapping(path = "sendMailNew",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> sendMailNew(String uEmail) throws Exception {
+//    public Map<String,Object> sendMailNew(String uEmail) throws Exception {
+    public Map<String,Object> sendMailNew() throws Exception {
         User userSess = (User) request.getSession().getAttribute("userSession");
         String username = userSess.getuName();
         String code = VerificationCodeUtil.get6Nonce_str();
 //        发邮件（用户邮箱，随机数）
-        SendEmail.sendMail(uEmail,code,username);
+        SendEmail.sendMail(userSess.getuEmail(),code,username);
         HashMap<String, Object> stringObjectHashMap = new HashMap<>();
 //        将产生的随机数塞进  id='mailCodeReturn'  的表单中  键 为 “mailCode”
         stringObjectHashMap.put("mailCode",code);
