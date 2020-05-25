@@ -131,7 +131,8 @@
                                     </td>
                                     <td style="width: 91%;text-align: right">
                                         <button type="button"  class="btn btn-outline-info"  onclick="toUpdate(${allArticleS.resId})">修改</button>
-                                        <button type="button" disabled class="btn btn-outline-danger"  onclick="todel(${allArticleS.resId})">删除</button>
+                                        <button type="button"  class="btn btn-outline-danger"  onclick="todel(${allArticleS.resId})">删除</button>
+                                        <%--disabled--%>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -297,7 +297,8 @@
 <div class="page-header" filter-color="3333">
     <%--背景图片来自--http://www.jswyw.com/zt/kyfh/202002/t20200212_6506686.shtml--%>
     <%--<div class="page-header-image" style="background-image:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582216394476&di=213fd4649b145d4e82d6482802a2b80d&imgtype=jpg&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D1547969452%2C252362791%26fm%3D214%26gp%3D0.jpg)"></div>--%>
-    <div class="page-header-image" style="filter: blur(1px); background-image:url(http://www.jswyw.com/zt/kyfh/202002/W020200212435459141418.jpg)"></div>
+<%--    <div class="page-header-image" style="filter: blur(1px); background-image:url(http://www.jswyw.com/zt/kyfh/202002/W020200212435459141418.jpg)"></div>--%>
+    <div class="page-header-image" style="filter: blur(1px); background-image:url(https://cdn.pixabay.com/photo/2020/05/17/13/57/the-sea-5181726_960_720.jpg)"></div>
     <div class="container">
         <div class="col-md-4"></div>
         <div class="col-md-4 content-center">

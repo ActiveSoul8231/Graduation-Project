@@ -116,7 +116,8 @@
 </script>
 <body class="login-page sidebar-collapse">
 <div class="page-header" filter-color="3333">
-    <div class="page-header-image" style="background-image:url(http://www.jswyw.com/zt/kyfh/202002/W020200212435459141418.jpg)"></div>
+<%--    <div class="page-header-image" style="background-image:url(http://www.jswyw.com/zt/kyfh/202002/W020200212435459141418.jpg)"></div>--%>
+    <div class="page-header-image" style="filter: blur(1px); background-image:url(https://cdn.pixabay.com/photo/2020/05/17/13/57/the-sea-5181726_960_720.jpg)"></div>
     <div class="container">
         <%--<div class="row">--%>
             <%--<div class="col-md-4"></div>--%>

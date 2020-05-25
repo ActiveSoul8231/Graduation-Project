@@ -508,9 +508,9 @@
     function toLogin() {
         location.href="${pageContext.request.contextPath}/user/toLogin";
     }
-    function toLaunchFind(uId) {
-        location.href="${pageContext.request.contextPath}/m/toLaunchFind?uId="+uId;
-    }
+    <%--function toLaunchFind(uId) {--%>
+    <%--    location.href="${pageContext.request.contextPath}/m/toLaunchFind?uId="+uId;--%>
+    <%--}--%>
 
 
 

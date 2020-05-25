@@ -417,7 +417,7 @@
                 </div>
 
             </div>
-            <div class="col-6 col-md-6">
+            <div class="col-sm-6 col-md-6">
                 <div class="apt">
                     <h4>寻物启事</h4>
 
