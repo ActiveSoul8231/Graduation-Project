@@ -205,7 +205,7 @@
 - 管理员发布公告
   - 管理员可以根据情况发布不同的公告在首页展示
 
-![思维导图1](https://activesoul8231.github.io/yxswzl/%E9%99%A2%E6%A0%A1%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%86%E8%AF%A6%E7%BB%86%E5%8A%9F%E8%83%BD%E5%9B%BE1.png)
-![思维导图2](https://activesoul8231.github.io/yxswzl/%E9%99%A2%E6%A0%A1%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%86%E8%AF%A6%E7%BB%86%E5%8A%9F%E8%83%BD%E5%9B%BE2.png)
+![思维导图1](http://139.199.69.169:8080/testTP/yxswzl1.png)
+![思维导图2](http://139.199.69.169:8080/testTP/yxswzl2.png)
 [附件1](https://ActiveSoul8231.github.io/yxswzl/院校失物招领详细功能图1.pdf)
 [附件2](https://ActiveSoul8231.github.io/yxswzl/院校失物招领详细功能图2.pdf)
