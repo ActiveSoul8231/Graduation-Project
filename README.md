@@ -205,7 +205,7 @@
 - 管理员发布公告
   - 管理员可以根据情况发布不同的公告在首页展示
 
-![思维导图1](http://139.199.69.169:8080/testTP/yxswzl1.png)
-![思维导图2](http://139.199.69.169:8080/testTP/yxswzl2.png)
+![思维导图1](pic/院校失物招领详细功能图1.png)
+![思维导图2](pic/院校失物招领详细功能图2.png)
 [附件1](https://ActiveSoul8231.github.io/yxswzl/院校失物招领详细功能图1.pdf)
 [附件2](https://ActiveSoul8231.github.io/yxswzl/院校失物招领详细功能图2.pdf)
